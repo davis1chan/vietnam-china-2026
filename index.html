@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17324d">
+  <title>Vietnam & China 2026 — Davis's Trip</title>
+  <style>
+    :root{
+      --ink:#17324d; --muted:#687786; --paper:#f7f4ee; --card:#ffffff;
+      --line:#dce3e8; --accent:#d65f4b; --sea:#2c7a7b; --gold:#d9a441;
+      --shadow:0 10px 30px rgba(23,50,77,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+    a{color:inherit}
+    .wrap{width:min(1080px,calc(100% - 32px));margin:auto}
+    header{padding:64px 0 36px;background:linear-gradient(135deg,#17324d 0%,#245673 60%,#2c7a7b 100%);color:white}
+    .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8;font-weight:750}
+    h1{font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.02;margin:.35rem 0 .8rem;letter-spacing:-.04em}
+    .lead{max-width:760px;font-size:clamp(1.05rem,2vw,1.25rem);opacity:.92;margin:0}
+    .status{margin-top:24px;display:inline-flex;gap:10px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:10px 14px;border-radius:999px;backdrop-filter:blur(4px)}
+    .dot{width:9px;height:9px;border-radius:50%;background:#ffd166;box-shadow:0 0 0 5px rgba(255,209,102,.13)}
+    nav{position:sticky;top:0;z-index:20;background:rgba(247,244,238,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    nav .wrap{display:flex;gap:10px;overflow:auto;padding:10px 0}
+    nav a{text-decoration:none;white-space:nowrap;padding:8px 12px;border-radius:999px;font-size:.9rem;font-weight:700}
+    nav a:hover{background:white}
+    main{padding:36px 0 64px}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:42px}
+    .summary div{background:var(--card);padding:16px;border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .summary strong{display:block;font-size:1.25rem}
+    .summary span{color:var(--muted);font-size:.9rem}
+    section{scroll-margin-top:72px;margin:46px 0}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:20px}
+    .section-title h2{margin:0;font-size:1.65rem;letter-spacing:-.025em}
+    .section-title p{margin:0;color:var(--muted);font-size:.92rem}
+    .timeline{display:grid;gap:14px}
+    .card{display:grid;grid-template-columns:150px 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+    .card.active{outline:3px solid rgba(214,95,75,.35);border-color:var(--accent)}
+    .card.active:after{content:"TODAY";position:absolute;right:14px;top:14px;background:var(--accent);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.08em;padding:5px 8px;border-radius:999px}
+    .date{padding:20px 18px;background:#edf3f5;border-right:1px solid var(--line)}
+    .date strong{display:block;font-size:1rem}
+    .date span{display:block;color:var(--muted);font-size:.84rem;margin-top:3px}
+    .content{padding:20px 22px}
+    .content h3{margin:0 0 4px;font-size:1.18rem}
+    .place{font-weight:750;color:var(--sea)}
+    .hotel{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+    .hotel b{display:block}
+    .address{color:var(--muted);font-size:.94rem}
+    .travel{display:inline-block;margin-top:8px;background:#f6efe2;border:1px solid #eadbbd;border-radius:10px;padding:6px 9px;font-size:.88rem}
+    .note{margin-top:10px;font-size:.9rem;color:var(--muted)}
+    .privacy{margin-top:42px;background:#fff8e8;border:1px solid #ead8a7;padding:18px 20px;border-radius:16px}
+    footer{padding:22px 0 44px;color:var(--muted);font-size:.88rem;text-align:center}
+    @media(max-width:720px){
+      header{padding-top:44px}
+      .summary{grid-template-columns:repeat(2,1fr)}
+      .card{grid-template-columns:1fr}
+      .date{border-right:0;border-bottom:1px solid var(--line);padding:12px 18px}
+      .date strong,.date span{display:inline}
+      .date span:before{content:" · "}
+      .content{padding:18px}
+      .section-title{align-items:start;flex-direction:column;gap:2px}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Family trip tracker · Autumn 2026</div>
+    <h1>Vietnam & China</h1>
+    <p class="lead">My route from London to Hong Kong, Vietnam, across China and home again — with dates, hotels and the main travel legs so you know where I am.</p>
+    <div class="status"><span class="dot"></span><span id="trip-status">Trip begins 27 September 2026</span></div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#overview">Overview</a>
+    <a href="#vietnam">Vietnam</a>
+    <a href="#china">China</a>
+    <a href="#hongkong">Hong Kong & home</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="overview">
+    <div class="summary">
+      <div><strong>45 days</strong><span>27 Sep – 10 Nov</span></div>
+      <div><strong>2 countries</strong><span>Vietnam + China</span></div>
+      <div><strong>13 bases</strong><span>Hotels / stays</span></div>
+      <div><strong>Mostly rail</strong><span>Plus 4 flights</span></div>
+    </div>
+  </section>
+
+  <section id="vietnam">
+    <div class="section-title">
+      <h2>Vietnam</h2>
+      <p>30 September – 13 October</p>
+    </div>
+    <div class="timeline">
+
+      <article class="card" data-start="2026-09-27" data-end="2026-09-28">
+        <div class="date"><strong>27–28 Sep</strong><span>Outbound</span></div>
+        <div class="content">
+          <h3>London → Beijing → Hong Kong → <span class="place">Shenzhen</span></h3>
+          <div class="travel">Air China CA938 + CA115, then HSR via Hong Kong West Kowloon to Futian</div>
+          <div class="hotel"><b>Wutongyu Hotel / 梧桐寓酒店</b><div class="address">Jinmin Building, No. 8 Zizhu 6th Road, Futian District, Shenzhen</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-09-30" data-end="2026-10-02">
+        <div class="date"><strong>30 Sep – 3 Oct</strong><span>Hanoi</span></div>
+        <div class="content">
+          <h3><span class="place">Hanoi</span></h3>
+          <div class="travel">China Southern CZ8469 · Shenzhen 14:40 → Hanoi 15:45</div>
+          <div class="hotel"><b>Anchie Maison Hà Nội</b><div class="address">7 ngõ 8 Tôn Thất Thiệp, Phường Ba Đình, Hanoi</div></div>
+          <div class="note">Airport car is pre-booked to the hotel.</div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-03" data-end="2026-10-07">
+        <div class="date"><strong>3–7 Oct</strong><span>Ha Giang</span></div>
+        <div class="content">
+          <h3><span class="place">Ha Giang Loop</span></h3>
+          <div class="travel">3 Oct bus from Hanoi · Road Kings 4-day Premium Easy Rider · tour 4–7 Oct</div>
+          <div class="hotel"><b>Road Kings, Ha Giang</b><div class="address">Dorm included on 3 October; accommodation on the loop is organised with the tour.</div></div>
+          <div class="note">Evening bus leaves Ha Giang for Ninh Binh on 7 October.</div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-08" data-end="2026-10-10">
+        <div class="date"><strong>7–11 Oct</strong><span>Tam Coc</span></div>
+        <div class="content">
+          <h3><span class="place">Ninh Binh / Tam Coc</span></h3>
+          <div class="hotel"><b>Tam Coc Mountain Lake Homestay</b><div class="address">Tam Coc Lake, Hoa Lu District, Ninh Binh</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-11" data-end="2026-10-12">
+        <div class="date"><strong>11–13 Oct</strong><span>Cat Ba</span></div>
+        <div class="content">
+          <h3><span class="place">Cat Ba Island</span></h3>
+          <div class="travel">Cat Ba Express from Tam Coc / Ninh Binh at 09:00</div>
+          <div class="hotel"><b>Cat Ba Nam Phong Hotel</b><div class="address">163 Nui Ngoc Street, Cat Ba Town</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-13" data-end="2026-10-13">
+        <div class="date"><strong>13 Oct</strong><span>Vietnam → China</span></div>
+        <div class="content">
+          <h3>Cat Ba → Hanoi → <span class="place">Xi'an</span></h3>
+          <div class="travel">09:30 Cat Ba Express to Hanoi · China Eastern MU868, Hanoi 20:15 → Xi'an 23:50</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="china">
+    <div class="section-title">
+      <h2>China</h2>
+      <p>13 October – 9 November</p>
+    </div>
+    <div class="timeline">
+
+      <article class="card" data-start="2026-10-13" data-end="2026-10-16">
+        <div class="date"><strong>13–17 Oct</strong><span>Xi'an</span></div>
+        <div class="content">
+          <h3><span class="place">Xi'an</span></h3>
+          <div class="hotel"><b>Nanfeng Hotel / 南枫酒店</b><div class="address">Unit 1, Building 1, No. 18 West Bangzishi Street, Lianhu District, Xi'an</div></div>
+          <div class="note">15 Oct: Huashan day trip by high-speed rail from Xi'an North to Huashan North.</div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-17" data-end="2026-10-17">
+        <div class="date"><strong>17 Oct</strong><span>Xi'an</span></div>
+        <div class="content">
+          <h3><span class="place">Xi'an — hotel change</span></h3>
+          <div class="hotel"><b>Sky Garden Rooftop Social Hostel / 桂花载久露台花园青年旅舍</b><div class="address">Inside the Lane, No. 84 Dapiyuan, Lianhu District, Xi'an</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-18" data-end="2026-10-21">
+        <div class="date"><strong>18–22 Oct</strong><span>Chengdu</span></div>
+        <div class="content">
+          <h3><span class="place">Chengdu</span></h3>
+          <div class="travel">High-speed rail: Xi'an North → Chengdu East</div>
+          <div class="hotel"><b>Star Joy House · Chunxi Road Store / 星悦house精选高空公寓</b><div class="address">Evergrande Caojiaxiang Plaza, Xinghui East Road, Jinniu District, Chengdu</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-22" data-end="2026-10-25">
+        <div class="date"><strong>22–26 Oct</strong><span>Chongqing</span></div>
+        <div class="content">
+          <h3><span class="place">Chongqing</span></h3>
+          <div class="travel">High-speed rail: Chengdu East → Shapingba</div>
+          <div class="hotel"><b>Friendly Nanyuan Riverview Homestay / Friendly楠苑江景美宿</b><div class="address">No. 15, 33rd Floor, Building 5, No. 361 Jiefang East Road, Yuzhong District, Chongqing</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-26" data-end="2026-10-28">
+        <div class="date"><strong>26–29 Oct</strong><span>Wulingyuan</span></div>
+        <div class="content">
+          <h3><span class="place">Zhangjiajie / Wulingyuan</span></h3>
+          <div class="travel">High-speed rail: Chongqing East → Zhangjiajie West, then coach to Wulingyuan</div>
+          <div class="hotel"><b>Louzhongxiaoge Inn / 楼中小阁客栈</b><div class="address">No. 29 Huanxi Road, Jundiping Subdistrict, Wulingyuan District, Zhangjiajie</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-29" data-end="2026-10-29">
+        <div class="date"><strong>29–30 Oct</strong><span>Zhangjiajie City</span></div>
+        <div class="content">
+          <h3><span class="place">Zhangjiajie City / Tianmen Mountain</span></h3>
+          <div class="travel">Coach from Wulingyuan to Zhangjiajie Central Bus Station</div>
+          <div class="hotel"><b>Small Backbasket INN / 小背篓民宿</b><div class="address">Guanliping Community, Yongding District, Zhangjiajie, Hunan</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-10-30" data-end="2026-10-31">
+        <div class="date"><strong>30 Oct – 1 Nov</strong><span>Fenghuang</span></div>
+        <div class="content">
+          <h3><span class="place">Fenghuang Ancient Town</span></h3>
+          <div class="travel">High-speed rail: Zhangjiajie West → Fenghuang Gucheng</div>
+          <div class="hotel"><b>Phoenix Tea Words Listening to Rain River View Homestay / 景宿梦澜·茶言听雨</b><div class="address">No. 46, Jinjia Garden, Tuojiang Town, Fenghuang County, Hunan</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-11-01" data-end="2026-11-03">
+        <div class="date"><strong>1–4 Nov</strong><span>Guangzhou</span></div>
+        <div class="content">
+          <h3><span class="place">Guangzhou</span></h3>
+          <div class="travel">Direct high-speed rail planned: Fenghuang Gucheng → Guangzhou South</div>
+          <div class="hotel"><b>BYOU APARTMENT / 栢里美居</b><div class="address">Huangsha Avenue, Liwan District, Guangzhou</div></div>
+          <div class="note">2 Nov: Hong Kong day trip by high-speed rail from Guangzhou South to Hong Kong West Kowloon.</div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-11-04" data-end="2026-11-08">
+        <div class="date"><strong>4–9 Nov</strong><span>Shenzhen</span></div>
+        <div class="content">
+          <h3><span class="place">Shenzhen</span></h3>
+          <div class="travel">High-speed rail: Guangzhou South → Shenzhen North</div>
+          <div class="hotel"><b>Shenzhen Love Bird Apartment / 深圳爱情鸟公寓</b><div class="address">Room 7H, Tower B, Fenghuang Yinxiang Building, No. 181 Fenghuang Road, Luohu District, Shenzhen</div></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="hongkong">
+    <div class="section-title">
+      <h2>Hong Kong & home</h2>
+      <p>9–10 November</p>
+    </div>
+    <div class="timeline">
+      <article class="card" data-start="2026-11-09" data-end="2026-11-09">
+        <div class="date"><strong>9–10 Nov</strong><span>Hong Kong</span></div>
+        <div class="content">
+          <h3><span class="place">Hong Kong</span></h3>
+          <div class="travel">High-speed rail: Shenzhen North → Hong Kong West Kowloon</div>
+          <div class="hotel"><b>Yutik Guesthouse / 香港榆廸賓館</b><div class="address">Flat G, 6th Floor, Kingland Apartments, 739 Nathan Road, Mong Kok, Kowloon</div></div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-11-10" data-end="2026-11-10">
+        <div class="date"><strong>10 Nov</strong><span>Home</span></div>
+        <div class="content">
+          <h3>Hong Kong → Beijing → <span class="place">London</span></h3>
+          <div class="travel">Air China CA118, HKG 08:30 → PEK 11:50 · CA937, PEK 14:50 → LHR 17:50</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="privacy">
+    <strong>Privacy note:</strong> This public family page deliberately leaves out booking references, PINs, access codes and personal contact details.
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">Vietnam & China · 27 September – 10 November 2026 · Times and transport may change.</div>
+</footer>
+
+<script>
+  function londonISODate(){
+    const parts = new Intl.DateTimeFormat('en-GB',{
+      timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'
+    }).formatToParts(new Date()).reduce((a,p)=>(a[p.type]=p.value,a),{});
+    return parts.year+'-'+parts.month+'-'+parts.day;
+  }
+  const today = londonISODate();
+  const tripStart='2026-09-27', tripEnd='2026-11-10';
+  const cards=[...document.querySelectorAll('.card')];
+  const active=cards.find(c=>today>=c.dataset.start && today<=c.dataset.end);
+  const status=document.getElementById('trip-status');
+  if(active){
+    active.classList.add('active');
+    const title=active.querySelector('h3').innerText;
+    status.textContent='Today: '+title;
+  }else if(today<tripStart){
+    status.textContent='Trip begins 27 September 2026';
+  }else if(today>tripEnd){
+    status.textContent='Trip completed 10 November 2026';
+  }else{
+    const next=cards.find(c=>c.dataset.start>today);
+    status.textContent=next ? 'Next: '+next.querySelector('h3').innerText : 'Travelling';
+  }
+</script>
+</body>
+</html>
