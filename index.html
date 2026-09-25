@@ -15,6 +15,7 @@
     html{scroll-behavior:smooth}
     body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
     a{color:inherit}
+    button{font:inherit}
     .wrap{width:min(1080px,calc(100% - 32px));margin:auto}
     header{padding:64px 0 36px;background:linear-gradient(135deg,#17324d 0%,#245673 60%,#2c7a7b 100%);color:white}
     .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8;font-weight:750}
@@ -26,34 +27,58 @@
     nav .wrap{display:flex;gap:10px;overflow:auto;padding:10px 0}
     nav a{text-decoration:none;white-space:nowrap;padding:8px 12px;border-radius:999px;font-size:.9rem;font-weight:700}
     nav a:hover{background:white}
-    main{padding:36px 0 64px}
+    main{padding:30px 0 64px}
+
+    .today-panel{background:linear-gradient(135deg,#fff 0%,#f4faf9 100%);border:2px solid var(--sea);border-radius:22px;padding:24px;box-shadow:var(--shadow);margin:0 0 28px}
+    .today-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+    .today-kicker{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--sea)}
+    .today-panel h2{font-size:clamp(1.55rem,4vw,2.3rem);line-height:1.12;margin:4px 0 0;letter-spacing:-.03em}
+    .today-date{color:var(--muted);font-weight:700;white-space:nowrap}
+    .today-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .today-box{background:white;border:1px solid var(--line);border-radius:15px;padding:14px 16px}
+    .today-box strong{display:block;margin-bottom:4px}
+    .today-box p{margin:0;color:var(--muted)}
+    .today-box.full{grid-column:1/-1}
+
     .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:42px}
     .summary div{background:var(--card);padding:16px;border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow)}
     .summary strong{display:block;font-size:1.25rem}
     .summary span{color:var(--muted);font-size:.9rem}
     section{scroll-margin-top:72px;margin:46px 0}
+    #overview{margin-top:0}
     .section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:20px}
     .section-title h2{margin:0;font-size:1.65rem;letter-spacing:-.025em}
     .section-title p{margin:0;color:var(--muted);font-size:.92rem}
     .timeline{display:grid;gap:14px}
     .card{display:grid;grid-template-columns:150px 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);position:relative}
-    .card.active{outline:3px solid rgba(214,95,75,.35);border-color:var(--accent)}
+    .card.active{outline:3px solid rgba(214,95,75,.28);border-color:var(--accent)}
     .card.active:after{content:"TODAY";position:absolute;right:14px;top:14px;background:var(--accent);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.08em;padding:5px 8px;border-radius:999px}
     .date{padding:20px 18px;background:#edf3f5;border-right:1px solid var(--line)}
     .date strong{display:block;font-size:1rem}
     .date span{display:block;color:var(--muted);font-size:.84rem;margin-top:3px}
     .content{padding:20px 22px}
-    .content h3{margin:0 0 4px;font-size:1.18rem}
+    .content h3{margin:0 0 4px;font-size:1.18rem;padding-right:54px}
     .place{font-weight:750;color:var(--sea)}
-    .hotel{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
-    .hotel b{display:block}
-    .address{color:var(--muted);font-size:.94rem}
+    .hotel{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+    .hotel-name{font-weight:800}
+    .addr-block{margin-top:9px;padding:10px 12px;background:#f7f9fa;border-radius:12px;border:1px solid #e8edef}
+    .addr-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--muted);margin-bottom:3px}
+    .address{font-size:.94rem}
+    .copy-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+    .copy-btn{border:1px solid #cdd8dd;background:white;color:var(--ink);padding:6px 9px;border-radius:9px;font-weight:750;font-size:.82rem;cursor:pointer}
+    .copy-btn:hover{border-color:var(--sea);color:var(--sea)}
+    .copy-btn.copied{background:#e8f6f3;border-color:#89bbb2;color:#215f57}
     .travel{display:inline-block;margin-top:8px;background:#f6efe2;border:1px solid #eadbbd;border-radius:10px;padding:6px 9px;font-size:.88rem}
+    .route{margin-top:10px;padding:10px 12px;background:#eef5f7;border-left:3px solid var(--sea);border-radius:0 10px 10px 0;font-size:.9rem}
     .note{margin-top:10px;font-size:.9rem;color:var(--muted)}
     .privacy{margin-top:42px;background:#fff8e8;border:1px solid #ead8a7;padding:18px 20px;border-radius:16px}
     footer{padding:22px 0 44px;color:var(--muted);font-size:.88rem;text-align:center}
     @media(max-width:720px){
       header{padding-top:44px}
+      main{padding-top:20px}
+      .today-top{flex-direction:column;gap:4px}
+      .today-grid{grid-template-columns:1fr}
+      .today-box.full{grid-column:auto}
       .summary{grid-template-columns:repeat(2,1fr)}
       .card{grid-template-columns:1fr}
       .date{border-right:0;border-bottom:1px solid var(--line);padding:12px 18px}
@@ -67,16 +92,16 @@
 <body>
 <header>
   <div class="wrap">
-    <div class="eyebrow">Family trip tracker · Autumn 2026</div>
+    <div class="eyebrow">Personal trip dashboard · Autumn 2026</div>
     <h1>Vietnam & China</h1>
-    <p class="lead">My route from London to Hong Kong, Vietnam, across China and home again — with dates, hotels and the main travel legs so you know where I am.</p>
+    <p class="lead">Dates, hotels, addresses and the transport details I need while travelling — plus a live Today card.</p>
     <div class="status"><span class="dot"></span><span id="trip-status">Trip begins 27 September 2026</span></div>
   </div>
 </header>
 
 <nav>
   <div class="wrap">
-    <a href="#overview">Overview</a>
+    <a href="#today">Today</a>
     <a href="#vietnam">Vietnam</a>
     <a href="#china">China</a>
     <a href="#hongkong">Hong Kong & home</a>
@@ -84,201 +109,293 @@
 </nav>
 
 <main class="wrap">
+  <section id="today" class="today-panel">
+    <div class="today-top">
+      <div>
+        <div class="today-kicker">Today</div>
+        <h2 id="today-title">Preparing for the trip</h2>
+      </div>
+      <div class="today-date" id="today-date"></div>
+    </div>
+    <div class="today-grid" id="today-grid"></div>
+  </section>
+
   <section id="overview">
     <div class="summary">
       <div><strong>45 days</strong><span>27 Sep – 10 Nov</span></div>
-      <div><strong>2 countries</strong><span>Vietnam + China</span></div>
+      <div><strong>Vietnam + China</strong><span>With Hong Kong stops</span></div>
       <div><strong>13 bases</strong><span>Hotels / stays</span></div>
-      <div><strong>Mostly rail</strong><span>Plus 4 flights</span></div>
+      <div><strong>Rail-heavy</strong><span>Plus flights & coaches</span></div>
     </div>
   </section>
 
   <section id="vietnam">
-    <div class="section-title">
-      <h2>Vietnam</h2>
-      <p>30 September – 13 October</p>
-    </div>
+    <div class="section-title"><h2>Vietnam</h2><p>30 September – 13 October</p></div>
     <div class="timeline">
 
-      <article class="card" data-start="2026-09-27" data-end="2026-09-28">
-        <div class="date"><strong>27–28 Sep</strong><span>Outbound</span></div>
+      <article class="card" data-start="2026-09-27" data-end="2026-09-27" data-kind="travel">
+        <div class="date"><strong>27 Sep</strong><span>Outbound</span></div>
         <div class="content">
-          <h3>London → Beijing → Hong Kong → <span class="place">Shenzhen</span></h3>
-          <div class="travel">Air China CA938 + CA115, then HSR via Hong Kong West Kowloon to Futian</div>
-          <div class="hotel"><b>Wutongyu Hotel / 梧桐寓酒店</b><div class="address">Jinmin Building, No. 8 Zizhu 6th Road, Futian District, Shenzhen</div></div>
+          <h3>London → Beijing</h3>
+          <div class="travel">Air China CA938 · London Heathrow 20:25 → Beijing Capital 13:25 on 28 September</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-09-30" data-end="2026-10-02">
+      <article class="card" data-start="2026-09-28" data-end="2026-09-29" data-kind="stay">
+        <div class="date"><strong>28–30 Sep</strong><span>Shenzhen</span></div>
+        <div class="content">
+          <h3>Beijing → Hong Kong → <span class="place">Shenzhen</span></h3>
+          <div class="travel">Air China CA115 · Beijing 15:20 → Hong Kong 19:00 · then HSR Hong Kong West Kowloon 香港西九龙 → Futian 福田</div>
+          <div class="hotel">
+            <div class="hotel-name">Wutongyu Hotel · 梧桐寓酒店(深圳竹子林地铁站店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address copy-text">Jinmin Building, No. 8 Zizhu 6th Road, Zhulin Community, Xiangmihu Subdistrict, Futian District, Shenzhen, Guangdong, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address copy-text">广东深圳福田区香蜜湖街道竹林社区紫竹六道8号金民大厦</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="Jinmin Building, No. 8 Zizhu 6th Road, Zhulin Community, Xiangmihu Subdistrict, Futian District, Shenzhen, Guangdong, China">Copy English</button><button class="copy-btn" data-copy="广东深圳福田区香蜜湖街道竹林社区紫竹六道8号金民大厦">复制中文</button></div>
+          </div>
+          <div class="route"><b>To hotel:</b> Futian → Metro Line 11 to Chegongmiao 车公庙 → Line 1 one stop to Zhuzilin 竹子林 → Exit B2 → ~200 m walk.</div>
+        </div>
+      </article>
+
+      <article class="card" data-start="2026-09-30" data-end="2026-10-02" data-kind="stay">
         <div class="date"><strong>30 Sep – 3 Oct</strong><span>Hanoi</span></div>
         <div class="content">
           <h3><span class="place">Hanoi</span></h3>
-          <div class="travel">China Southern CZ8469 · Shenzhen 14:40 → Hanoi 15:45</div>
-          <div class="hotel"><b>Anchie Maison Hà Nội</b><div class="address">7 ngõ 8 Tôn Thất Thiệp, Phường Ba Đình, Hanoi</div></div>
-          <div class="note">Airport car is pre-booked to the hotel.</div>
+          <div class="travel">China Southern CZ8469 · Shenzhen T3 14:40 → Hanoi T2 15:45</div>
+          <div class="hotel">
+            <div class="hotel-name">Anchie Maison Hà Nội</div>
+            <div class="addr-block"><div class="addr-label">Address</div><div class="address">7 ngõ 8 Tôn Thất Thiệp, Phường Ba Đình, Hanoi, Vietnam</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="7 ngõ 8 Tôn Thất Thiệp, Phường Ba Đình, Hanoi, Vietnam">Copy address</button></div>
+          </div>
+          <div class="route"><b>Airport:</b> pre-booked car linked to flight CZ8469 takes you directly to Anchie Maison Hà Nội.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-03" data-end="2026-10-07">
+      <article class="card" data-start="2026-10-03" data-end="2026-10-07" data-kind="tour">
         <div class="date"><strong>3–7 Oct</strong><span>Ha Giang</span></div>
         <div class="content">
           <h3><span class="place">Ha Giang Loop</span></h3>
-          <div class="travel">3 Oct bus from Hanoi · Road Kings 4-day Premium Easy Rider · tour 4–7 Oct</div>
-          <div class="hotel"><b>Road Kings, Ha Giang</b><div class="address">Dorm included on 3 October; accommodation on the loop is organised with the tour.</div></div>
-          <div class="note">Evening bus leaves Ha Giang for Ninh Binh on 7 October.</div>
+          <div class="travel">3 Oct: Bằng Phấn office 12:30 for 13:00 transfer · Road Kings 4-Day Premium Easy Rider begins 4 Oct</div>
+          <div class="hotel"><div class="hotel-name">Road Kings, Ha Giang</div><div class="note">Free dorm on 3 October; tour accommodation is arranged by Road Kings. Use the exact pickup map pin from the booking rather than searching for Bằng Phấn.</div></div>
+          <div class="route"><b>7 Oct:</b> post-tour bus to Ninh Binh at 19:00.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-08" data-end="2026-10-10">
+      <article class="card" data-start="2026-10-08" data-end="2026-10-10" data-kind="stay">
         <div class="date"><strong>7–11 Oct</strong><span>Tam Coc</span></div>
         <div class="content">
           <h3><span class="place">Ninh Binh / Tam Coc</span></h3>
-          <div class="hotel"><b>Tam Coc Mountain Lake Homestay</b><div class="address">Tam Coc Lake, Hoa Lu District, Ninh Binh</div></div>
+          <div class="hotel">
+            <div class="hotel-name">Tam Coc Mountain Lake Homestay</div>
+            <div class="addr-block"><div class="addr-label">Address</div><div class="address">Tam Coc Lake, Hoa Lu District, Ninh Binh, Vietnam</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="Tam Coc Mountain Lake Homestay, Tam Coc Lake, Hoa Lu District, Ninh Binh, Vietnam">Copy address</button></div>
+          </div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-11" data-end="2026-10-12">
+      <article class="card" data-start="2026-10-11" data-end="2026-10-12" data-kind="stay">
         <div class="date"><strong>11–13 Oct</strong><span>Cat Ba</span></div>
         <div class="content">
           <h3><span class="place">Cat Ba Island</span></h3>
-          <div class="travel">Cat Ba Express from Tam Coc / Ninh Binh at 09:00</div>
-          <div class="hotel"><b>Cat Ba Nam Phong Hotel</b><div class="address">163 Nui Ngoc Street, Cat Ba Town</div></div>
+          <div class="travel">Cat Ba Express · pickup from Tam Coc Mountain Lake Homestay from 08:45 · departure 09:00</div>
+          <div class="hotel">
+            <div class="hotel-name">Cat Ba Nam Phong Hotel</div>
+            <div class="addr-block"><div class="addr-label">Address</div><div class="address">163 Nui Ngoc Street, Cat Ba Town, Vietnam</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="Cat Ba Nam Phong Hotel, 163 Nui Ngoc Street, Cat Ba Town, Vietnam">Copy address</button></div>
+          </div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-13" data-end="2026-10-13">
+      <article class="card" data-start="2026-10-13" data-end="2026-10-13" data-kind="travel">
         <div class="date"><strong>13 Oct</strong><span>Vietnam → China</span></div>
         <div class="content">
           <h3>Cat Ba → Hanoi → <span class="place">Xi'an</span></h3>
-          <div class="travel">09:30 Cat Ba Express to Hanoi · China Eastern MU868, Hanoi 20:15 → Xi'an 23:50</div>
+          <div class="travel">Cat Ba Express 09:30 to Hanoi · then Grab/taxi to Noi Bai T2 · China Eastern MU868, Hanoi 20:15 → Xi'an 23:50</div>
+          <div class="note">Recheck the Opodo / China Eastern booking before travel because the saved email showed the ticket as still being finalised.</div>
         </div>
       </article>
     </div>
   </section>
 
   <section id="china">
-    <div class="section-title">
-      <h2>China</h2>
-      <p>13 October – 9 November</p>
-    </div>
+    <div class="section-title"><h2>China</h2><p>13 October – 9 November</p></div>
     <div class="timeline">
 
-      <article class="card" data-start="2026-10-13" data-end="2026-10-16">
+      <article class="card" data-start="2026-10-13" data-end="2026-10-16" data-kind="stay">
         <div class="date"><strong>13–17 Oct</strong><span>Xi'an</span></div>
         <div class="content">
           <h3><span class="place">Xi'an</span></h3>
-          <div class="hotel"><b>Nanfeng Hotel / 南枫酒店</b><div class="address">Unit 1, Building 1, No. 18 West Bangzishi Street, Lianhu District, Xi'an</div></div>
-          <div class="note">15 Oct: Huashan day trip by high-speed rail from Xi'an North to Huashan North.</div>
+          <div class="hotel">
+            <div class="hotel-name">Nanfeng Hotel (Xi'an Zhonggulou Huimin Street Branch) · 南枫酒店(西安钟鼓楼回民街店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">Unit 1, Building 1, No. 18 West Bangzishi Street, Lianhu District, Xi'an, Shaanxi, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">陕西西安莲湖区西梆子市街18号1幢1单元</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="Unit 1, Building 1, No. 18 West Bangzishi Street, Lianhu District, Xi'an, Shaanxi, China">Copy English</button><button class="copy-btn" data-copy="陕西西安莲湖区西梆子市街18号1幢1单元">复制中文</button></div>
+          </div>
+          <div class="route"><b>Late arrival:</b> use an official airport taxi or DiDi. Do not plan on the metro after the 23:50 flight arrival.</div>
+          <div class="note">15 Oct: Huashan day trip · Xi'an North 西安北 → Huashan North 华山北.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-17" data-end="2026-10-17">
+      <article class="card" data-start="2026-10-17" data-end="2026-10-17" data-kind="stay">
         <div class="date"><strong>17 Oct</strong><span>Xi'an</span></div>
         <div class="content">
           <h3><span class="place">Xi'an — hotel change</span></h3>
-          <div class="hotel"><b>Sky Garden Rooftop Social Hostel / 桂花载久露台花园青年旅舍</b><div class="address">Inside the Lane, No. 84 Dapiyuan, Lianhu District, Xi'an</div></div>
+          <div class="hotel">
+            <div class="hotel-name">Sky Garden Rooftop Social Hostel · 桂花载久露台花园青年旅舍(钟鼓楼回民街店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">Inside the Lane, No. 84 Dapiyuan, Lianhu District, Xi'an, Shaanxi, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">陕西西安莲湖区大皮院84号巷内</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="Inside the Lane, No. 84 Dapiyuan, Lianhu District, Xi'an, Shaanxi, China">Copy English</button><button class="copy-btn" data-copy="陕西西安莲湖区大皮院84号巷内">复制中文</button></div>
+          </div>
+          <div class="route">Both Xi'an hotels are around the Bell Tower / Muslim Quarter. Walk or use a short DiDi with luggage.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-18" data-end="2026-10-21">
+      <article class="card" data-start="2026-10-18" data-end="2026-10-21" data-kind="stay">
         <div class="date"><strong>18–22 Oct</strong><span>Chengdu</span></div>
         <div class="content">
           <h3><span class="place">Chengdu</span></h3>
-          <div class="travel">High-speed rail: Xi'an North → Chengdu East</div>
-          <div class="hotel"><b>Star Joy House · Chunxi Road Store / 星悦house精选高空公寓</b><div class="address">Evergrande Caojiaxiang Plaza, Xinghui East Road, Jinniu District, Chengdu</div></div>
+          <div class="travel">High-speed rail: Xi'an North 西安北 → Chengdu East 成都东</div>
+          <div class="hotel">
+            <div class="hotel-name">Star Joy House · Chunxi Road Store · 星悦house精选高空公寓(春熙路店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">No. 4002, Unit 1, Building 1, Zone C, Evergrande Caojiaxiang Plaza, Xinghui East Road, Simaqiao Subdistrict, Jinniu District, Chengdu, Sichuan, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">四川成都金牛区驷马桥街道星辉东路恒大曹家巷广场C区1栋1单元4002号</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="No. 4002, Unit 1, Building 1, Zone C, Evergrande Caojiaxiang Plaza, Xinghui East Road, Simaqiao Subdistrict, Jinniu District, Chengdu, Sichuan, China">Copy English</button><button class="copy-btn" data-copy="四川成都金牛区驷马桥街道星辉东路恒大曹家巷广场C区1栋1单元4002号">复制中文</button></div>
+          </div>
+          <div class="route"><b>From Chengdu East:</b> Metro Line 2 → Chunxi Road 春熙路 → Line 3 → Hongxing Bridge 红星桥, Exit C → walk or short DiDi.</div>
+          <div class="note">Front desk: Room 4002, 40th floor, Unit 1, Building 1, Zone C. Front-desk hours 10:00–00:00.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-22" data-end="2026-10-25">
+      <article class="card" data-start="2026-10-22" data-end="2026-10-25" data-kind="stay">
         <div class="date"><strong>22–26 Oct</strong><span>Chongqing</span></div>
         <div class="content">
           <h3><span class="place">Chongqing</span></h3>
-          <div class="travel">High-speed rail: Chengdu East → Shapingba</div>
-          <div class="hotel"><b>Friendly Nanyuan Riverview Homestay / Friendly楠苑江景美宿</b><div class="address">No. 15, 33rd Floor, Building 5, No. 361 Jiefang East Road, Yuzhong District, Chongqing</div></div>
+          <div class="travel">High-speed rail: Chengdu East 成都东 → Shapingba 沙坪坝</div>
+          <div class="hotel">
+            <div class="hotel-name">Friendly Nanyuan Riverview Homestay · Friendly楠苑江景美宿(解放碑洪崖洞店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">No. 15, 33rd Floor, Building 5, No. 361 Jiefang East Road, Yuzhong District, Chongqing, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">重庆渝中区解放东路361号5栋33楼15号</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="No. 15, 33rd Floor, Building 5, No. 361 Jiefang East Road, Yuzhong District, Chongqing, China">Copy English</button><button class="copy-btn" data-copy="重庆渝中区解放东路361号5栋33楼15号">复制中文</button></div>
+          </div>
+          <div class="route"><b>From Shapingba:</b> Metro Line 1 direct to Xiaoshizi 小什字 → short walk or DiDi to the accommodation.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-26" data-end="2026-10-28">
+      <article class="card" data-start="2026-10-26" data-end="2026-10-28" data-kind="stay">
         <div class="date"><strong>26–29 Oct</strong><span>Wulingyuan</span></div>
         <div class="content">
           <h3><span class="place">Zhangjiajie / Wulingyuan</span></h3>
-          <div class="travel">High-speed rail: Chongqing East → Zhangjiajie West, then coach to Wulingyuan</div>
-          <div class="hotel"><b>Louzhongxiaoge Inn / 楼中小阁客栈</b><div class="address">No. 29 Huanxi Road, Jundiping Subdistrict, Wulingyuan District, Zhangjiajie</div></div>
+          <div class="travel">High-speed rail: Chongqing East 重庆东 → Zhangjiajie West 张家界西 · then tourist coach to Wulingyuan Bus Station 武陵源汽车站</div>
+          <div class="hotel">
+            <div class="hotel-name">Louzhongxiaoge Inn · 楼中小阁客栈(张家界武陵源森林公园店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">No. 29 Huanxi Road, Jundiping Subdistrict, Wulingyuan District, Zhangjiajie, Hunan, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">湖南张家界武陵源区军地坪街道环溪路29号</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="No. 29 Huanxi Road, Jundiping Subdistrict, Wulingyuan District, Zhangjiajie, Hunan, China">Copy English</button><button class="copy-btn" data-copy="湖南张家界武陵源区军地坪街道环溪路29号">复制中文</button></div>
+          </div>
+          <div class="route">From Wulingyuan Bus Station: short taxi/DiDi to the hotel.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-29" data-end="2026-10-29">
+      <article class="card" data-start="2026-10-29" data-end="2026-10-29" data-kind="stay">
         <div class="date"><strong>29–30 Oct</strong><span>Zhangjiajie City</span></div>
         <div class="content">
           <h3><span class="place">Zhangjiajie City / Tianmen Mountain</span></h3>
-          <div class="travel">Coach from Wulingyuan to Zhangjiajie Central Bus Station</div>
-          <div class="hotel"><b>Small Backbasket INN / 小背篓民宿</b><div class="address">Guanliping Community, Yongding District, Zhangjiajie, Hunan</div></div>
+          <div class="travel">Wulingyuan Bus Station → regular tourist coach → Zhangjiajie Central Bus Station 张家界中心汽车站</div>
+          <div class="hotel">
+            <div class="hotel-name">Small Backbasket INN · 小背篓民宿(张家界天门山索道店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">Village Group 6, Guanliping Community, Guanliping Office, Yongding District, Zhangjiajie, Hunan 427000, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">湖南张家界永定区管黎坪办事处管黎坪社区六组</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="Village Group 6, Guanliping Community, Guanliping Office, Yongding District, Zhangjiajie, Hunan 427000, China">Copy English</button><button class="copy-btn" data-copy="湖南张家界永定区管黎坪办事处管黎坪社区六组">复制中文</button></div>
+          </div>
+          <div class="route">From Zhangjiajie Central Bus Station: walk or take a short taxi/DiDi toward the Tianmen Mountain cableway area.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-10-30" data-end="2026-10-31">
+      <article class="card" data-start="2026-10-30" data-end="2026-10-31" data-kind="stay">
         <div class="date"><strong>30 Oct – 1 Nov</strong><span>Fenghuang</span></div>
         <div class="content">
           <h3><span class="place">Fenghuang Ancient Town</span></h3>
-          <div class="travel">High-speed rail: Zhangjiajie West → Fenghuang Gucheng</div>
-          <div class="hotel"><b>Phoenix Tea Words Listening to Rain River View Homestay / 景宿梦澜·茶言听雨</b><div class="address">No. 46, Jinjia Garden, Tuojiang Town, Fenghuang County, Hunan</div></div>
+          <div class="travel">High-speed rail: Zhangjiajie West 张家界西 → Fenghuang Gucheng 凤凰古城</div>
+          <div class="hotel">
+            <div class="hotel-name">Phoenix Tea Words Listening to Rain River View Homestay · 景宿梦澜·茶言听雨Garden庭院智能江景民宿(凤凰古城南华桥店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">No. 46, Jinjia Garden, Tuojiang Town, Fenghuang County, Hunan, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">湖南凤凰县沱江镇金家园46号</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="No. 46, Jinjia Garden, Tuojiang Town, Fenghuang County, Hunan, China">Copy English</button><button class="copy-btn" data-copy="湖南凤凰县沱江镇金家园46号">复制中文</button></div>
+          </div>
+          <div class="route">From Fenghuang Gucheng station: taxi/DiDi or arrange hotel pickup to the ancient-town area. Contact the property before arrival for check-in.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-11-01" data-end="2026-11-03">
+      <article class="card" data-start="2026-11-01" data-end="2026-11-03" data-kind="stay">
         <div class="date"><strong>1–4 Nov</strong><span>Guangzhou</span></div>
         <div class="content">
           <h3><span class="place">Guangzhou</span></h3>
-          <div class="travel">Direct high-speed rail planned: Fenghuang Gucheng → Guangzhou South</div>
-          <div class="hotel"><b>BYOU APARTMENT / 栢里美居</b><div class="address">Huangsha Avenue, Liwan District, Guangzhou</div></div>
-          <div class="note">2 Nov: Hong Kong day trip by high-speed rail from Guangzhou South to Hong Kong West Kowloon.</div>
+          <div class="travel">Direct high-speed rail planned: Fenghuang Gucheng 凤凰古城 → Guangzhou South 广州南</div>
+          <div class="hotel">
+            <div class="hotel-name">BYOU APARTMENT · 栢里美居(广州永庆坊黄沙地铁站店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">No. 36 Nanzhan Xinjie Residential Community, Huangsha Avenue, Liwan District, Guangzhou, Guangdong, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">广东广州荔湾区黄沙大道南站新街小区23号</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="No. 36 Nanzhan Xinjie Residential Community, Huangsha Avenue, Liwan District, Guangzhou, Guangdong, China">Copy English</button><button class="copy-btn" data-copy="广东广州荔湾区黄沙大道南站新街小区23号">复制中文</button></div>
+          </div>
+          <div class="route"><b>From Guangzhou South:</b> Line 2 → Gongyuanqian 公园前 → Line 1 → Huangsha 黄沙 → walk/short DiDi.</div>
+          <div class="note"><b>Address check:</b> Trip.com lists No. 36 in English but 23号 in Chinese. Keep both versions and confirm the entrance with the property.</div>
+          <div class="note">2 Nov: Hong Kong day trip · Guangzhou South 广州南 ↔ Hong Kong West Kowloon 香港西九龙.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-11-04" data-end="2026-11-08">
+      <article class="card" data-start="2026-11-04" data-end="2026-11-08" data-kind="stay">
         <div class="date"><strong>4–9 Nov</strong><span>Shenzhen</span></div>
         <div class="content">
           <h3><span class="place">Shenzhen</span></h3>
-          <div class="travel">High-speed rail: Guangzhou South → Shenzhen North</div>
-          <div class="hotel"><b>Shenzhen Love Bird Apartment / 深圳爱情鸟公寓</b><div class="address">Room 7H, Tower B, Fenghuang Yinxiang Building, No. 181 Fenghuang Road, Luohu District, Shenzhen</div></div>
+          <div class="travel">High-speed rail: Guangzhou South 广州南 → Shenzhen North 深圳北</div>
+          <div class="hotel">
+            <div class="hotel-name">Shenzhen Love Bird Apartment · 深圳爱情鸟公寓(黄贝岭地铁站店)</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">Room 7H, Tower B, Fenghuang Yinxiang Building, No. 181 Fenghuang Road, Huangbeiling, Luohu District, Shenzhen, Guangdong 518003, China</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">广东深圳罗湖区黄贝岭凤凰路181号凤凰印象大厦B座7H</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="Room 7H, Tower B, Fenghuang Yinxiang Building, No. 181 Fenghuang Road, Huangbeiling, Luohu District, Shenzhen, Guangdong 518003, China">Copy English</button><button class="copy-btn" data-copy="广东深圳罗湖区黄贝岭凤凰路181号凤凰印象大厦B座7H">复制中文</button></div>
+          </div>
+          <div class="route"><b>From Shenzhen North:</b> Metro Line 5 direct to Huangbeiling 黄贝岭 → walk or short DiDi.</div>
         </div>
       </article>
     </div>
   </section>
 
   <section id="hongkong">
-    <div class="section-title">
-      <h2>Hong Kong & home</h2>
-      <p>9–10 November</p>
-    </div>
+    <div class="section-title"><h2>Hong Kong & home</h2><p>9–10 November</p></div>
     <div class="timeline">
-      <article class="card" data-start="2026-11-09" data-end="2026-11-09">
+      <article class="card" data-start="2026-11-09" data-end="2026-11-09" data-kind="stay">
         <div class="date"><strong>9–10 Nov</strong><span>Hong Kong</span></div>
         <div class="content">
           <h3><span class="place">Hong Kong</span></h3>
-          <div class="travel">High-speed rail: Shenzhen North → Hong Kong West Kowloon</div>
-          <div class="hotel"><b>Yutik Guesthouse / 香港榆廸賓館</b><div class="address">Flat G, 6th Floor, Kingland Apartments, 739 Nathan Road, Mong Kok, Kowloon</div></div>
+          <div class="travel">High-speed rail: Shenzhen North 深圳北 → Hong Kong West Kowloon 香港西九龙</div>
+          <div class="hotel">
+            <div class="hotel-name">Yutik Guesthouse · 香港榆廸賓館</div>
+            <div class="addr-block"><div class="addr-label">English address</div><div class="address">Flat G, 6th Floor, Kingland Apartments, 739 Nathan Road, Mong Kok, Kowloon, Hong Kong</div></div>
+            <div class="addr-block"><div class="addr-label">中文地址</div><div class="address">香港旺角彌敦道739號 金輪大廈6樓G室</div></div>
+            <div class="copy-row"><button class="copy-btn" data-copy="Flat G, 6th Floor, Kingland Apartments, 739 Nathan Road, Mong Kok, Kowloon, Hong Kong">Copy English</button><button class="copy-btn" data-copy="香港旺角彌敦道739號 金輪大廈6樓G室">複製中文</button></div>
+          </div>
+          <div class="route">After West Kowloon immigration, take a short taxi to Mong Kok and the guesthouse.</div>
+          <div class="note">Contact the guesthouse one day before arrival to obtain the self check-in access code.</div>
         </div>
       </article>
 
-      <article class="card" data-start="2026-11-10" data-end="2026-11-10">
+      <article class="card" data-start="2026-11-10" data-end="2026-11-10" data-kind="travel">
         <div class="date"><strong>10 Nov</strong><span>Home</span></div>
         <div class="content">
           <h3>Hong Kong → Beijing → <span class="place">London</span></h3>
-          <div class="travel">Air China CA118, HKG 08:30 → PEK 11:50 · CA937, PEK 14:50 → LHR 17:50</div>
+          <div class="travel">Air China CA118 · HKG 08:30 → PEK 11:50 · Air China CA937 · PEK 14:50 → LHR 17:50</div>
+          <div class="route">Early transfer: taxi from Mong Kok to Kowloon Airport Express Station → Airport Express to Hong Kong International Airport.</div>
+          <div class="note">Recheck the Air China booking shortly before departure because an earlier airline email referenced a different Beijing → London flight number.</div>
         </div>
       </article>
     </div>
   </section>
 
   <div class="privacy">
-    <strong>Privacy note:</strong> This public family page deliberately leaves out booking references, PINs, access codes and personal contact details.
+    <strong>Privacy note:</strong> This public page includes hotel addresses because they are useful while travelling, but deliberately leaves out booking references, PINs, access codes and personal contact details.
   </div>
 </main>
 
-<footer>
-  <div class="wrap">Vietnam & China · 27 September – 10 November 2026 · Times and transport may change.</div>
-</footer>
+<footer><div class="wrap">Vietnam & China · 27 September – 10 November 2026 · Times and transport may change.</div></footer>
 
 <script>
   function londonISODate(){
@@ -287,23 +404,94 @@
     }).formatToParts(new Date()).reduce((a,p)=>(a[p.type]=p.value,a),{});
     return parts.year+'-'+parts.month+'-'+parts.day;
   }
+
+  function prettyToday(){
+    return new Intl.DateTimeFormat('en-GB',{
+      timeZone:'Europe/London',weekday:'long',day:'numeric',month:'long'
+    }).format(new Date());
+  }
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
   const today = londonISODate();
   const tripStart='2026-09-27', tripEnd='2026-11-10';
   const cards=[...document.querySelectorAll('.card')];
-  const active=cards.find(c=>today>=c.dataset.start && today<=c.dataset.end);
+  const activeCards=cards.filter(c=>today>=c.dataset.start && today<=c.dataset.end);
   const status=document.getElementById('trip-status');
-  if(active){
-    active.classList.add('active');
-    const title=active.querySelector('h3').innerText;
-    status.textContent='Today: '+title;
-  }else if(today<tripStart){
-    status.textContent='Trip begins 27 September 2026';
-  }else if(today>tripEnd){
-    status.textContent='Trip completed 10 November 2026';
-  }else{
-    const next=cards.find(c=>c.dataset.start>today);
-    status.textContent=next ? 'Next: '+next.querySelector('h3').innerText : 'Travelling';
+  const todayTitle=document.getElementById('today-title');
+  const todayDate=document.getElementById('today-date');
+  const todayGrid=document.getElementById('today-grid');
+  todayDate.textContent=prettyToday();
+
+  function addTodayBox(label, html, full=false){
+    if(!html) return;
+    const box=document.createElement('div');
+    box.className='today-box'+(full?' full':'');
+    box.innerHTML='<strong>'+label+'</strong>'+html;
+    todayGrid.appendChild(box);
   }
+
+  if(activeCards.length){
+    activeCards.forEach(c=>c.classList.add('active'));
+    const titles=[...new Set(activeCards.map(c=>c.querySelector('h3')?.innerText).filter(Boolean))];
+    todayTitle.textContent=titles.join(' + ');
+    status.textContent='Today: '+titles.join(' · ');
+
+    const travel=activeCards.map(c=>c.querySelector('.travel')?.innerText).filter(Boolean);
+    if(travel.length) addTodayBox('Getting around', travel.map(t=>'<p>'+escapeHtml(t)+'</p>').join(''));
+
+    const hotels=activeCards.map(c=>c.querySelector('.hotel')).filter(Boolean);
+    if(hotels.length){
+      const hotelHtml=hotels.map(h=>h.innerHTML).join('<hr style="border:0;border-top:1px solid #dce3e8;margin:12px 0">');
+      addTodayBox('Where I’m staying', hotelHtml, true);
+    }
+
+    const routes=activeCards.map(c=>c.querySelector('.route')?.innerHTML).filter(Boolean);
+    if(routes.length) addTodayBox('Arrival / local route', routes.map(r=>'<p>'+r+'</p>').join(''), true);
+
+    const notes=activeCards.map(c=>c.querySelector('.note')?.innerHTML).filter(Boolean);
+    if(notes.length) addTodayBox('Remember', notes.map(n=>'<p>'+n+'</p>').join(''), true);
+  } else if(today<tripStart){
+    const start=new Date(tripStart+'T12:00:00Z');
+    const now=new Date(today+'T12:00:00Z');
+    const days=Math.round((start-now)/86400000);
+    todayTitle.textContent='Trip starts in '+days+' day'+(days===1?'':'s');
+    status.textContent='Trip begins 27 September 2026';
+    addTodayBox('Next journey','<p>London Heathrow → Beijing Capital → Hong Kong → Shenzhen</p>');
+    addTodayBox('First flight','<p>Air China CA938 · LHR 20:25 on 27 September</p>');
+    addTodayBox('First stay','<p><b>Wutongyu Hotel · 梧桐寓酒店</b><br>Shenzhen, Futian District</p>',true);
+  } else if(today>tripEnd){
+    todayTitle.textContent='Trip complete';
+    status.textContent='Trip completed 10 November 2026';
+    addTodayBox('Home','<p>Back in London after Vietnam, China and Hong Kong.</p>',true);
+  } else {
+    const next=cards.find(c=>c.dataset.start>today);
+    todayTitle.textContent='Travel day / transition';
+    status.textContent=next ? 'Next: '+next.querySelector('h3').innerText : 'Travelling';
+    if(next) addTodayBox('Next', '<p>'+escapeHtml(next.querySelector('h3').innerText)+'</p>', true);
+  }
+
+  document.addEventListener('click', async (e)=>{
+    const btn=e.target.closest('.copy-btn');
+    if(!btn) return;
+    const text=btn.dataset.copy;
+    try{
+      await navigator.clipboard.writeText(text);
+      const old=btn.textContent;
+      btn.textContent='Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(()=>{btn.textContent=old;btn.classList.remove('copied')},1300);
+    }catch(err){
+      const ta=document.createElement('textarea');
+      ta.value=text; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); ta.remove();
+      const old=btn.textContent;
+      btn.textContent='Copied ✓';
+      setTimeout(()=>btn.textContent=old,1300);
+    }
+  });
 </script>
 </body>
 </html>
