@@ -39,11 +39,6 @@
     .today-box strong{display:block;margin-bottom:4px}
     .today-box p{margin:0;color:var(--muted)}
     .today-box.full{grid-column:1/-1}
-
-    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:42px}
-    .summary div{background:var(--card);padding:16px;border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow)}
-    .summary strong{display:block;font-size:1.25rem}
-    .summary span{color:var(--muted);font-size:.9rem}
     section{scroll-margin-top:72px;margin:46px 0}
     #overview{margin-top:0}
     .section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:20px}
@@ -71,7 +66,6 @@
     .travel{display:inline-block;margin-top:8px;background:#f6efe2;border:1px solid #eadbbd;border-radius:10px;padding:6px 9px;font-size:.88rem}
     .route{margin-top:10px;padding:10px 12px;background:#eef5f7;border-left:3px solid var(--sea);border-radius:0 10px 10px 0;font-size:.9rem}
     .note{margin-top:10px;font-size:.9rem;color:var(--muted)}
-    .privacy{margin-top:42px;background:#fff8e8;border:1px solid #ead8a7;padding:18px 20px;border-radius:16px}
     footer{padding:22px 0 44px;color:var(--muted);font-size:.88rem;text-align:center}
     @media(max-width:720px){
       header{padding-top:44px}
@@ -79,7 +73,6 @@
       .today-top{flex-direction:column;gap:4px}
       .today-grid{grid-template-columns:1fr}
       .today-box.full{grid-column:auto}
-      .summary{grid-template-columns:repeat(2,1fr)}
       .card{grid-template-columns:1fr}
       .date{border-right:0;border-bottom:1px solid var(--line);padding:12px 18px}
       .date strong,.date span{display:inline}
@@ -116,15 +109,6 @@
       <div class="today-date" id="today-date"></div>
     </div>
     <div class="today-grid" id="today-grid"></div>
-  </section>
-
-  <section id="overview">
-    <div class="summary">
-      <div><strong>45 days</strong><span>27 Sep – 10 Nov</span></div>
-      <div><strong>Vietnam + China</strong><span>With Hong Kong stops</span></div>
-      <div><strong>13 bases</strong><span>Hotels / stays</span></div>
-      <div><strong>Rail-heavy</strong><span>Plus flights & coaches</span></div>
-    </div>
   </section>
 
   <section id="vietnam">
@@ -387,20 +371,17 @@
       </article>
     </div>
   </section>
-
-  <div class="privacy">
-    <strong>Privacy note:</strong> This public page includes hotel addresses because they are useful while travelling, but deliberately leaves out booking references, PINs, access codes and personal contact details.
-  </div>
 </main>
 
 <footer><div class="wrap">Vietnam & China · 27 September – 10 November 2026 · Times and transport may change.</div></footer>
 
 <script>
-  function londonISODate(){
-    const parts = new Intl.DateTimeFormat('en-GB',{
-      timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'
-    }).formatToParts(new Date()).reduce((a,p)=>(a[p.type]=p.value,a),{});
-    return parts.year+'-'+parts.month+'-'+parts.day;
+  function localISODate(){
+    const d=new Date();
+    const y=d.getFullYear();
+    const m=String(d.getMonth()+1).padStart(2,'0');
+    const day=String(d.getDate()).padStart(2,'0');
+    return y+'-'+m+'-'+day;
   }
 
   function prettyDate(iso){
@@ -413,7 +394,7 @@
   }
 
   const selectedDate = new URLSearchParams(location.search).get('date');
-  const today = selectedDate || londonISODate();
+  const today = selectedDate || localISODate();
   const tripStart='2026-09-27', tripEnd='2026-11-10';
   const cards=[...document.querySelectorAll('.card')];
   const activeCards=cards.filter(c=>today>=c.dataset.start && today<=c.dataset.end);
@@ -436,7 +417,7 @@
     activeCards.forEach(c=>c.classList.add('active'));
     const titles=[...new Set(activeCards.map(c=>c.querySelector('h3')?.innerText).filter(Boolean))];
     todayTitle.textContent=titles.join(' + ');
-    status.textContent='Today: '+titles.join(' · ');
+    status.textContent=(selectedDate?'Selected: ':'Today: ')+titles.join(' · ');
 
     const travel=activeCards.map(c=>c.querySelector('.travel')?.innerText).filter(Boolean);
     if(travel.length) addTodayBox('Getting around', travel.map(t=>'<p>'+escapeHtml(t)+'</p>').join(''));
