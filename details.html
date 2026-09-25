@@ -48,6 +48,7 @@
     .card{display:grid;grid-template-columns:150px 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);position:relative}
     .card.active{outline:3px solid rgba(214,95,75,.28);border-color:var(--accent)}
     .card.active:after{content:"TODAY";position:absolute;right:14px;top:14px;background:var(--accent);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.08em;padding:5px 8px;border-radius:999px}
+    body.selected-mode .card.active:after{content:"SELECTED"}
     .date{padding:20px 18px;background:#edf3f5;border-right:1px solid var(--line)}
     .date strong{display:block;font-size:1rem}
     .date span{display:block;color:var(--muted);font-size:.84rem;margin-top:3px}
@@ -394,6 +395,7 @@
   }
 
   const selectedDate = new URLSearchParams(location.search).get('date');
+  if(selectedDate) document.body.classList.add('selected-mode');
   const today = selectedDate || localISODate();
   const tripStart='2026-09-27', tripEnd='2026-11-10';
   const cards=[...document.querySelectorAll('.card')];
