@@ -38,7 +38,6 @@
     .main strong{display:block;font-size:1.05rem}
     .main span{display:block;color:var(--muted);font-size:.9rem;margin-top:2px}
     .arrow{font-size:1.25rem;color:var(--sea);font-weight:900}
-    .note{margin-top:28px;color:var(--muted);font-size:.88rem;text-align:center}
     footer{padding:0 0 40px;text-align:center;color:var(--muted);font-size:.86rem}
     @media(max-width:650px){
       header{padding-top:42px}
@@ -76,8 +75,6 @@
     </div>
     <div class="timeline" id="timeline"></div>
   </section>
-
-  <div class="note">Booking references, PINs, access codes and private contact details are not shown on this public site.</div>
 </main>
 
 <footer><div class="wrap">27 September – 10 November 2026</div></footer>
@@ -103,10 +100,12 @@ const stops=[
   {start:'2026-11-10',end:'2026-11-10',dates:'10 Nov',place:'Hong Kong → London',stay:'Homeward bound',travel:'Air China via Beijing'}
 ];
 
-function londonISODate(){
-  const p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'})
-    .formatToParts(new Date()).reduce((a,x)=>(a[x.type]=x.value,a),{});
-  return p.year+'-'+p.month+'-'+p.day;
+function localISODate(){
+  const d=new Date();
+  const y=d.getFullYear();
+  const m=String(d.getMonth()+1).padStart(2,'0');
+  const day=String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
 }
 function pretty(iso){
   return new Intl.DateTimeFormat('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})
@@ -114,7 +113,7 @@ function pretty(iso){
 }
 function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
-const today=londonISODate();
+const today=localISODate();
 const timeline=document.getElementById('timeline');
 stops.forEach(s=>{
   const current=today>=s.start&&today<=s.end;
