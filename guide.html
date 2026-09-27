@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17324d">
+  <title>Food & Places — Vietnam & China 2026</title>
+  <style>
+    :root{
+      --ink:#17324d;--muted:#687786;--paper:#f7f4ee;--card:#fff;--line:#dce3e8;
+      --sea:#2c7a7b;--accent:#d65f4b;--gold:#d9a441;--shadow:0 10px 28px rgba(23,50,77,.08)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+    a{color:inherit}
+    .wrap{width:min(980px,calc(100% - 30px));margin:auto}
+    header{padding:52px 0 30px;background:linear-gradient(135deg,#17324d,#245673 62%,#2c7a7b);color:white}
+    .eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800;opacity:.82}
+    h1{font-size:clamp(2.05rem,6vw,3.8rem);line-height:1.04;letter-spacing:-.04em;margin:.35rem 0 .6rem}
+    .lead{font-size:1.05rem;max-width:720px;margin:0;opacity:.92}
+    nav{position:sticky;top:0;z-index:10;background:rgba(247,244,238,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    nav .wrap{display:flex;gap:9px;overflow:auto;padding:10px 0}
+    nav a{text-decoration:none;white-space:nowrap;padding:8px 12px;border-radius:999px;font-size:.9rem;font-weight:750}
+    nav a:hover,nav a.active{background:white;box-shadow:0 2px 8px rgba(23,50,77,.06)}
+    main{padding:28px 0 60px}
+    .intro{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow);margin-bottom:24px}
+    .intro h2{margin:2px 0 0;font-size:1.65rem;letter-spacing:-.025em}
+    .intro p{margin:.45rem 0 0;color:var(--muted)}
+    .origin{margin-top:14px;padding:11px 13px;background:#f7f9fa;border-radius:12px;border:1px solid #e8edef;font-size:.92rem}
+    .legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:.78rem;font-weight:800}
+    .pill.bib{background:#eaf5f2;color:#22675f;border:1px solid #bfddd7}
+    .pill.core{background:#fff4df;color:#805e19;border:1px solid #ecd7a8}
+    .pill.backup{background:#eef3f6;color:#536474;border:1px solid #d9e2e7}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .food-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+    .food-card h3{font-size:1.16rem;margin:8px 0 3px;letter-spacing:-.015em}
+    .meta{color:var(--muted);font-size:.88rem;margin-bottom:10px}
+    .dish{font-weight:800;color:var(--sea);margin:8px 0 5px}
+    .desc{margin:0 0 12px;color:#465969}
+    .addr{font-size:.88rem;color:var(--muted);padding-top:10px;border-top:1px dashed var(--line)}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .btn{display:inline-block;text-decoration:none;border:1px solid #cdd8dd;background:#fff;padding:7px 10px;border-radius:9px;font-size:.84rem;font-weight:800}
+    .btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+    .empty{padding:28px;background:#fff;border:1px solid var(--line);border-radius:18px;color:var(--muted)}
+    footer{padding:0 0 40px;text-align:center;color:var(--muted);font-size:.86rem}
+    @media(max-width:720px){header{padding-top:42px}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Destination guide · Vietnam & China 2026</div>
+    <h1>Food & Places</h1>
+    <p class="lead">Useful local places to try alongside the itinerary. Organised by destination so more cities can be added as the trip progresses.</p>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap" id="nav">
+    <a href="details.html">← Full itinerary</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="intro" id="intro"></section>
+  <section class="grid" id="grid"></section>
+</main>
+
+<footer><div class="wrap">Vietnam & China · Autumn 2026 · Restaurant details and opening hours can change.</div></footer>
+
+<script>
+const guides = {
+  hanoi: {
+    name: 'Hanoi',
+    dates: '30 September – 3 October',
+    origin: 'Anchie Maison Hà Nội · 7 ngõ 8 Tôn Thất Thiệp, Phường Ba Đình',
+    note: 'Casual Michelin Guide picks first: Bib Gourmand, street food and classic Hanoi specialities. Most are walkable from the hotel or a very short Grab.',
+    places: [
+      {
+        name:'Miến Lươn Chân Cầm', tier:'core', label:'Core pick', michelin:'Bib Gourmand',
+        meal:'Breakfast / lunch', walk:'~8–10 min walk',
+        dish:'Order: eel vermicelli — crispy or soft eel, soup or dry',
+        desc:'One of the more distinctive Hanoi choices: a long-running eel specialist rather than another bowl of phở.',
+        address:'1 Chân Cầm, Hoàn Kiếm, Hanoi',
+        map:'https://www.google.com/maps/search/?api=1&query=Mi%E1%BA%BFn+L%C6%B0%C6%A1n+Ch%C3%A2n+C%E1%BA%A7m+Hanoi',
+        michelinUrl:'https://guide.michelin.com/vn/en/ha-noi/ha-noi_2974158/restaurant/mien-luon-chan-cam'
+      },
+      {
+        name:'Phở Gà Nguyệt', tier:'core', label:'Core pick', michelin:'Bib Gourmand',
+        meal:'Breakfast or late night', walk:'~9–12 min walk',
+        dish:'Order: chicken phở — thigh/wing mix; try the dry version too',
+        desc:'A practical stop because it works both early and late, with a choice of chicken cuts and soup or dry noodles.',
+        address:'5B Phủ Doãn, Hoàn Kiếm, Hanoi',
+        map:'https://www.google.com/maps/search/?api=1&query=Pho+Ga+Nguyet+5B+Phu+Doan+Hanoi',
+        michelinUrl:'https://guide.michelin.com/vn/en/ha-noi/ha-noi_2974158/restaurant/pho-ga-nguyet'
+      },
+      {
+        name:'Bánh Cuốn Gia Truyền Thanh Vân', tier:'core', label:'Core pick', michelin:'Bib Gourmand · new 2026',
+        meal:'Breakfast / early lunch', walk:'~10–12 min walk',
+        dish:'Order: bánh cuốn — steamed rice rolls with pork, shrimp or chicken',
+        desc:'Family-run since 1973 and a very Hanoi breakfast choice. Michelin notes that the rice rolls are made from scratch.',
+        address:'14 Hàng Gà, Hoàn Kiếm, Hanoi',
+        map:'https://www.google.com/maps/search/?api=1&query=Banh+Cuon+Gia+Truyen+Thanh+Van+14+Hang+Ga+Hanoi',
+        michelinUrl:'https://guide.michelin.com/us/en/ha-noi/ha-noi_2974158/restaurant/banh-cuon-gia-truyen-thanh-van-hang-ga-street'
+      },
+      {
+        name:'Phở Gia Truyền Bát Đàn', tier:'core', label:'Core pick', michelin:'Bib Gourmand',
+        meal:'Breakfast / dinner', walk:'~12–15 min walk',
+        dish:'Order: classic beef phở',
+        desc:'The iconic queue-at-the-counter, eat-like-a-local phở stop. Go for the atmosphere as much as the bowl.',
+        address:'49 Bát Đàn, Hoàn Kiếm, Hanoi',
+        map:'https://www.google.com/maps/search/?api=1&query=Pho+Gia+Truyen+Bat+Dan+49+Bat+Dan+Hanoi',
+        michelinUrl:'https://guide.michelin.com/vn/en/ha-noi/ha-noi_2974158/restaurant/pho-gia-truyen'
+      },
+      {
+        name:'Chả Cá Thăng Long', tier:'core', label:'Core pick', michelin:'Bib Gourmand',
+        meal:'Lunch / dinner', walk:'~12–15 min walk',
+        dish:'Order: chả cá — turmeric fish, dill, spring onion, noodles and peanuts',
+        desc:'A classic Hanoi speciality worth prioritising because it is very different from the noodle shops. Use the Michelin-listed 6B Đường Thành branch.',
+        address:'6B Đường Thành, Hoàn Kiếm, Hanoi',
+        map:'https://www.google.com/maps/search/?api=1&query=Cha+Ca+Thang+Long+6B+Duong+Thanh+Hanoi',
+        michelinUrl:'https://guide.michelin.com/us/en/ha-noi/ha-noi_2974158/restaurant/cha-ca-thang-long'
+      },
+      {
+        name:'Tuyết Bún Chả 34', tier:'core', label:'Core pick', michelin:'Bib Gourmand',
+        meal:'Lunch', walk:'~20 min walk / short Grab',
+        dish:'Order: bún chả — grilled pork, noodles, herbs and dipping sauce',
+        desc:'A straightforward street-food version of one of Hanoi’s essential dishes.',
+        address:'34 Hàng Than, Ba Đình, Hanoi',
+        map:'https://www.google.com/maps/search/?api=1&query=Tuyet+Bun+Cha+34+Hang+Than+Hanoi',
+        michelinUrl:'https://guide.michelin.com/en/ha-noi/ha-noi_2974158/restaurant/tuyet-bun-cha-34'
+      },
+      {
+        name:'Phở Khôi Hói', tier:'backup', label:'Excellent backup', michelin:'Bib Gourmand',
+        meal:'Breakfast / lunch / dinner', walk:'~15–18 min walk',
+        dish:'Order: beef phở — choose your cut and how it is cooked',
+        desc:'Tiny-stool, local-feeling phở with a notably wide choice of beef cuts.',
+        address:'50 Hàng Vải, Hoàn Kiếm, Hanoi',
+        map:'https://www.google.com/maps/search/?api=1&query=Pho+Khoi+Hoi+50+Hang+Vai+Hanoi',
+        michelinUrl:'https://guide.michelin.com/en/ha-noi/ha-noi_2974158/restaurant/pho-khoi-hoi'
+      },
+      {
+        name:'Phở Hà Hàng Hòm', tier:'backup', label:'Excellent backup', michelin:'Bib Gourmand',
+        meal:'Any time', walk:'~10–12 min walk',
+        dish:'Order: chicken phở or xôi gà',
+        desc:'Simple, no-frills and useful when you want another very local chicken option without planning around a special meal.',
+        address:'15 Hàng Hòm, Hoàn Kiếm, Hanoi',
+        map:'https://www.google.com/maps/search/?api=1&query=Pho+Ha+Hang+Hom+Hanoi',
+        michelinUrl:'https://guide.michelin.com/vn/en/ha-noi/ha-noi_2974158/restaurant/pho-ha-hang-hom'
+      }
+    ]
+  }
+};
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+const params=new URLSearchParams(location.search);
+const requested=params.get('city')||'hanoi';
+const city=guides[requested] ? requested : Object.keys(guides)[0];
+const g=guides[city];
+
+const nav=document.getElementById('nav');
+Object.entries(guides).forEach(([key,val])=>{
+  const a=document.createElement('a');
+  a.className=key===city?'active':'';
+  a.href='guide.html?city='+encodeURIComponent(key);
+  a.textContent=val.name;
+  nav.appendChild(a);
+});
+
+document.title=g.name+' Food Guide — Vietnam & China 2026';
+document.getElementById('intro').innerHTML=
+  '<div class="eyebrow" style="color:#2c7a7b;opacity:1">'+esc(g.dates)+'</div>'+
+  '<h2>'+esc(g.name)+' food guide</h2>'+
+  '<p>'+esc(g.note)+'</p>'+
+  '<div class="origin"><b>Starting point:</b> '+esc(g.origin)+'</div>'+
+  '<div class="legend"><span class="pill bib">MICHELIN Bib Gourmand</span><span class="pill core">Core pick</span><span class="pill backup">Backup</span></div>';
+
+const grid=document.getElementById('grid');
+g.places.forEach(p=>{
+  const card=document.createElement('article');
+  card.className='food-card';
+  card.innerHTML=
+    '<div><span class="pill bib">'+esc(p.michelin)+'</span> <span class="pill '+esc(p.tier)+'">'+esc(p.label)+'</span></div>'+
+    '<h3>'+esc(p.name)+'</h3>'+
+    '<div class="meta">'+esc(p.meal)+' · '+esc(p.walk)+'</div>'+
+    '<div class="dish">'+esc(p.dish)+'</div>'+
+    '<p class="desc">'+esc(p.desc)+'</p>'+
+    '<div class="addr">'+esc(p.address)+'</div>'+
+    '<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="'+p.map+'">Open map</a>'+
+    '<a class="btn" target="_blank" rel="noopener" href="'+p.michelinUrl+'">Michelin Guide</a></div>';
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
