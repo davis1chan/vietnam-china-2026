@@ -67,6 +67,13 @@
     .travel{display:inline-block;margin-top:8px;background:#f6efe2;border:1px solid #eadbbd;border-radius:10px;padding:6px 9px;font-size:.88rem}
     .route{margin-top:10px;padding:10px 12px;background:#eef5f7;border-left:3px solid var(--sea);border-radius:0 10px 10px 0;font-size:.9rem}
     .note{margin-top:10px;font-size:.9rem;color:var(--muted)}
+    .day-plan{margin-top:14px;padding:14px;background:#f8fbfb;border:1px solid #d9e8e6;border-radius:14px}
+    .day-plan-title{font-weight:850;color:var(--sea);margin-bottom:8px}
+    .day-stop{padding:9px 0;border-top:1px solid #e4ecec}
+    .day-stop:first-of-type{border-top:0;padding-top:2px}
+    .day-stop b{display:block;font-size:.94rem}
+    .day-stop span{display:block;color:var(--muted);font-size:.89rem;margin-top:2px;line-height:1.45}
+    .day-plan .copy-row{margin-top:5px}
     footer{padding:22px 0 44px;color:var(--muted);font-size:.88rem;text-align:center}
     @media(max-width:720px){
       header{padding-top:44px}
@@ -135,6 +142,40 @@
             <div class="addr-block"><div class="addr-label">English address</div><div class="address copy-text">Jinmin Building, No. 8 Zizhu 6th Road, Zhulin Community, Xiangmihu Subdistrict, Futian District, Shenzhen, Guangdong, China</div></div>
             <div class="addr-block"><div class="addr-label">中文地址</div><div class="address copy-text">广东深圳福田区香蜜湖街道竹林社区紫竹六道8号金民大厦</div></div>
             <div class="copy-row"><button class="copy-btn" data-copy="Jinmin Building, No. 8 Zizhu 6th Road, Zhulin Community, Xiangmihu Subdistrict, Futian District, Shenzhen, Guangdong, China">Copy English</button><button class="copy-btn" data-copy="广东深圳福田区香蜜湖街道竹林社区紫竹六道8号金民大厦">复制中文</button></div>
+          </div>
+          <div class="day-plan" data-day="2026-09-29">
+            <div class="day-plan-title">29 Sep · Shenzhen day plan</div>
+            <div class="day-stop">
+              <b>09:00 · Local breakfast near the hotel</b>
+              <span>Try 汕头辉记肠粉王 for pork-and-egg or beef-and-egg cheung fun. If Amap struggles, search the Chinese name plus 竹子林. Backup: 红荔村肠粉王(竹子林店).</span>
+              <div class="copy-row"><button class="copy-btn" data-copy="汕头辉记肠粉王 竹子林">Copy for Amap</button><button class="copy-btn" data-copy="红荔村肠粉王(竹子林店)">Copy backup</button></div>
+            </div>
+            <div class="day-stop">
+              <b>09:45–11:30 · OCT-LOFT 华侨城创意文化园</b>
+              <span>Walk to Zhuzilin 竹子林 station → Metro Line 1 toward Airport East 机场东 → one stop to Qiaocheng East 侨城东 → Exit A. Explore the converted factory buildings, galleries, design shops and cafés.</span>
+              <div class="copy-row"><button class="copy-btn" data-copy="华侨城创意文化园">Copy place</button></div>
+            </div>
+            <div class="day-stop">
+              <b>11:30–15:30 · Huaqiangbei 华强北</b>
+              <span>Qiaocheng East 侨城东 → Line 1 eastbound toward Luohu 罗湖 → Huaqiang Road 华强路. Explore the electronics district, have lunch and keep the hottest part of the day mostly indoors.</span>
+              <div class="copy-row"><button class="copy-btn" data-copy="华强北">Copy place</button></div>
+            </div>
+            <div class="day-stop">
+              <b>While at Huaqiangbei · Buy new trainers</b>
+              <span>Check Li-Ning 李宁 and Anta 安踏 around Maoye World / Huaqiangbei rather than making a separate shopping trip.</span>
+              <div class="copy-row"><button class="copy-btn" data-copy="茂业天地(华强北店)">Copy mall</button><button class="copy-btn" data-copy="李宁">Li-Ning</button><button class="copy-btn" data-copy="安踏">Anta</button></div>
+            </div>
+            <div class="day-stop">
+              <b>16:00–18:30 · Lianhuashan Park 莲花山公园</b>
+              <span>Walk to Huaxin 华新 → Line 3 westbound → Shaoniangong 少年宫 (2 stops) → Exit F1. Walk to the summit for the Civic Centre and Futian skyline; aim for late-afternoon light.</span>
+              <div class="copy-row"><button class="copy-btn" data-copy="莲花山公园">Copy place</button></div>
+            </div>
+            <div class="day-stop">
+              <b>18:30 onward · Futian dinner</b>
+              <span>Shaoniangong 少年宫 → Line 3 to Shopping Park 购物公园. Wander the Futian CBD / Coco Park area for dinner, then Line 1 direct from Shopping Park back to Zhuzilin 竹子林.</span>
+              <div class="copy-row"><button class="copy-btn" data-copy="购物公园">Copy place</button></div>
+            </div>
+            <div class="note"><b>Today:</b> hot and humid. Carry water, keep the long outdoor walk for late afternoon, and use the Chinese place names above in Amap.</div>
           </div>
           <div class="route"><b>To hotel:</b> Futian → Metro Line 11 to Chegongmiao 车公庙 → Line 1 one stop to Zhuzilin 竹子林 → Exit B2 → ~200 m walk.</div>
         </div>
@@ -430,6 +471,12 @@
     if(hotels.length){
       const hotelHtml=hotels.map(h=>h.innerHTML).join('<hr style="border:0;border-top:1px solid #dce3e8;margin:12px 0">');
       addTodayBox('Where I’m staying', hotelHtml, true);
+    }
+
+    const dayPlans=activeCards.map(c=>c.querySelector('.day-plan[data-day="'+today+'"]')).filter(Boolean);
+    if(dayPlans.length){
+      const planHtml=dayPlans.map(p=>p.innerHTML).join('<hr style="border:0;border-top:1px solid #dce3e8;margin:12px 0">');
+      addTodayBox('Today’s plan', planHtml, true);
     }
 
     const routes=activeCards.map(c=>c.querySelector('.route')?.innerHTML).filter(Boolean);
