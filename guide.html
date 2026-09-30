@@ -33,6 +33,18 @@
     .pill.bib{background:#eaf5f2;color:#22675f;border:1px solid #bfddd7}
     .pill.core{background:#fff4df;color:#805e19;border:1px solid #ecd7a8}
     .pill.backup{background:#eef3f6;color:#536474;border:1px solid #d9e2e7}
+    .section-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:9px;margin:30px 0 16px}
+    .section-heading h2{margin:0;font-size:1.55rem;letter-spacing:-.025em}
+    .section-heading p{margin:0;color:var(--muted);font-size:.9rem}
+    .plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .day-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+    .day-card h3{margin:3px 0 3px;font-size:1.2rem;letter-spacing:-.02em}
+    .day-sub{color:var(--muted);font-size:.9rem;margin-bottom:10px}
+    .stop{padding:10px 0;border-top:1px solid #e8edef}
+    .stop:first-of-type{border-top:0}
+    .stop b{display:block;font-size:.94rem;color:var(--ink)}
+    .stop span{display:block;margin-top:2px;color:#526474;font-size:.89rem;line-height:1.48}
+    .tip{margin-top:14px;padding:11px 13px;background:#eef7f5;border-left:3px solid var(--sea);border-radius:0 10px 10px 0;color:#3f5f5b;font-size:.9rem}
     .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
     .food-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
     .food-card h3{font-size:1.16rem;margin:8px 0 3px;letter-spacing:-.015em}
@@ -45,7 +57,7 @@
     .btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
     .empty{padding:28px;background:#fff;border:1px solid var(--line);border-radius:18px;color:var(--muted)}
     footer{padding:0 0 40px;text-align:center;color:var(--muted);font-size:.86rem}
-    @media(max-width:720px){header{padding-top:42px}.grid{grid-template-columns:1fr}}
+    @media(max-width:720px){header{padding-top:42px}.grid,.plan-grid{grid-template-columns:1fr}.section-heading{align-items:start;flex-direction:column;gap:2px}}
   </style>
 </head>
 <body>
@@ -53,19 +65,28 @@
   <div class="wrap">
     <div class="eyebrow">Destination guide · Vietnam & China 2026</div>
     <h1>Food & Places</h1>
-    <p class="lead">Useful local places to try alongside the itinerary. Organised by destination so more cities can be added as the trip progresses.</p>
+    <p class="lead">Useful local places and practical day plans alongside the itinerary. Organised by destination so more cities can be added as the trip progresses.</p>
   </div>
 </header>
 
 <nav>
   <div class="wrap" id="nav">
     <a href="details.html">← Full itinerary</a>
+    <a href="#plan">2-day plan</a>
+    <a href="#food">Food</a>
   </div>
 </nav>
 
 <main class="wrap">
   <section class="intro" id="intro"></section>
-  <section class="grid" id="grid"></section>
+  <section id="plan">
+    <div class="section-heading"><h2>Two full days in Hanoi</h2><p>Walk, eat, explore — not a checklist</p></div>
+    <div class="plan-grid" id="plan-grid"></div>
+  </section>
+  <section id="food">
+    <div class="section-heading"><h2>Food shortlist</h2><p>Michelin picks and useful backups</p></div>
+    <div class="grid" id="grid"></div>
+  </section>
 </main>
 
 <footer><div class="wrap">Vietnam & China · Autumn 2026 · Restaurant details and opening hours can change.</div></footer>
@@ -76,7 +97,44 @@ const guides = {
     name: 'Hanoi',
     dates: '30 September – 3 October',
     origin: 'Anchie Maison Hà Nội · 7 ngõ 8 Tôn Thất Thiệp, Phường Ba Đình',
-    note: 'Casual Michelin Guide picks first: Bib Gourmand, street food and classic Hanoi specialities. Most are walkable from the hotel or a very short Grab.',
+    note: 'Built around local food, street-level Hanoi, neighbourhood walking and a few sights with real substance. The aim is to leave room to stop when something looks interesting.',
+    plans: [
+      {
+        title:'Day 1 · Old Hanoi on foot',
+        sub:'Old Quarter → Hoàn Kiếm → Hỏa Lò → French Quarter · roughly 9–11 km',
+        stops:[
+          ['07:30–08:45 · Walk in + bánh cuốn breakfast','Walk from the hotel toward the Old Quarter while the city is waking up. Breakfast at Bánh Cuốn Gia Truyền Thanh Vân, 14 Hàng Gà.'],
+          ['08:45–10:15 · Old Quarter drift','Hàng Gà → Hàng Mã → Lãn Ông → edges of Đồng Xuân Market. Wander rather than navigate attraction-to-attraction.'],
+          ['10:15 · Egg coffee','Stop at Café Đinh for an old-school upstairs Hanoi coffee break.'],
+          ['11:00–12:00 · Hoàn Kiếm + side streets','Walk the eastern edge of the lake and the streets around St Joseph’s Cathedral / Nhà Thờ. The surrounding lanes matter more than ticking off the lake itself.'],
+          ['12:00 · Miến lươn lunch','Miến Lươn Chân Cầm for eel vermicelli; crispy eel is the distinctive choice.'],
+          ['13:15–14:45 · Hỏa Lò Prison','Give this one proper time. It adds historical and political context rather than just another photogenic stop.'],
+          ['14:45–16:30 · French Quarter walk','Lý Thường Kiệt → Ngô Quyền → Opera House → Tràng Tiền. Notice how the street grid and architecture change.'],
+          ['16:30–17:30 · Stop doing things','Coffee or an iced drink. Sit down for an hour.'],
+          ['19:15 · Chả cá dinner','Chả Cá Thăng Long, 6B Đường Thành — turmeric fish, dill, spring onion, noodles and peanuts.'],
+          ['20:30 onward · Old Quarter after dark','Hàng Bạc → Mã Mây and the smaller lanes. Take a look at Tạ Hiện if curious, but do not build the evening around beer street.']
+        ],
+        tip:'No organised food tour needed: the route itself links three very Hanoi dishes with the most interesting parts of the centre.'
+      },
+      {
+        title:'Day 2 · Ba Đình to the lakes',
+        sub:'Temple of Literature → Ba Đình → Trúc Bạch → West Lake · roughly 8–10 km + short Grabs',
+        stops:[
+          ['07:15 · Beef phở breakfast','Phở Gia Truyền Bát Đàn. Go early and treat the queue-at-the-counter ritual as part of it.'],
+          ['08:00–08:45 · Coffee near home','Ta Cà Phê 5 near Tôn Thất Thiệp. Try Vietnamese filter coffee rather than another egg coffee.'],
+          ['09:00–10:00 · Temple of Literature','A major sight worth keeping: old university, courtyards, scholarship and architecture rather than spectacle.'],
+          ['10:00–11:30 · Walk through Ba Đình','Nguyễn Thái Học → Hoàng Diệu → Phan Đình Phùng. Broad avenues, villas and mature trees; no need to queue for every part of the Ho Chi Minh complex.'],
+          ['11:45 · Bún chả lunch','Tuyết Bún Chả 34, 34 Hàng Than — grilled pork, noodles, herbs and dipping sauce on small street-side tables.'],
+          ['12:45–14:00 · Trúc Bạch wander','Walk down to the lake and around the Ngũ Xã peninsula. No objective: small streets, temples, mechanics, restaurants and everyday Hanoi.'],
+          ['14:00–15:00 · Coffee break','Kuu Coffee around Trúc Bạch. Give yourself a proper hour rather than marching on.'],
+          ['15:00–16:15 · Thanh Niên + Trấn Quốc','Walk the causeway between Trúc Bạch and West Lake and take a short look at Trấn Quốc Pagoda. Do not attempt a full lap of West Lake.'],
+          ['16:15–17:30 · Quảng An / Tây Hồ','Short Grab north, then wander the smaller lakeside lanes around Quảng An / Tô Ngọc Vân for late-afternoon light.'],
+          ['19:30 · Chicken phở dinner','Phở Gà Nguyệt, 5B Phủ Doãn. Choose a mix of thigh, wing and breast; wet or dry version.'],
+          ['21:00 · Optional massage','If the legs want rewarding rather than punishing, finish with a massage around Lý Quốc Sư; otherwise walk home through Hàng Bông.']
+        ],
+        tip:'Trúc Bạch is the sleeper hit: quieter, more residential and a better counterweight to a full day in the Old Quarter.'
+      }
+    ],
     places: [
       {
         name:'Miến Lươn Chân Cầm', tier:'core', label:'Core pick', michelin:'Bib Gourmand',
@@ -169,13 +227,23 @@ Object.entries(guides).forEach(([key,val])=>{
   nav.appendChild(a);
 });
 
-document.title=g.name+' Food Guide — Vietnam & China 2026';
+document.title=g.name+' Guide — Vietnam & China 2026';
 document.getElementById('intro').innerHTML=
   '<div class="eyebrow" style="color:#2c7a7b;opacity:1">'+esc(g.dates)+'</div>'+
-  '<h2>'+esc(g.name)+' food guide</h2>'+
+  '<h2>'+esc(g.name)+' guide</h2>'+
   '<p>'+esc(g.note)+'</p>'+
   '<div class="origin"><b>Starting point:</b> '+esc(g.origin)+'</div>'+
   '<div class="legend"><span class="pill bib">MICHELIN Bib Gourmand</span><span class="pill core">Core pick</span><span class="pill backup">Backup</span></div>';
+
+const planGrid=document.getElementById('plan-grid');
+(g.plans||[]).forEach(d=>{
+  const card=document.createElement('article');
+  card.className='day-card';
+  card.innerHTML='<div class="eyebrow" style="color:#2c7a7b;opacity:1">Hanoi day plan</div><h3>'+esc(d.title)+'</h3><div class="day-sub">'+esc(d.sub)+'</div>'+
+    d.stops.map(s=>'<div class="stop"><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>').join('')+
+    '<div class="tip">'+esc(d.tip)+'</div>';
+  planGrid.appendChild(card);
+});
 
 const grid=document.getElementById('grid');
 g.places.forEach(p=>{
