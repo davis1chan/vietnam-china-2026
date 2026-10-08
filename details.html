@@ -74,6 +74,12 @@
     .day-stop b{display:block;font-size:.94rem}
     .day-stop span{display:block;color:var(--muted);font-size:.89rem;margin-top:2px;line-height:1.45}
     .day-plan .copy-row{margin-top:5px}
+    .day-selector{margin:12px 0 5px}
+    .day-disclosure{margin:12px 0;border:1px solid #d9e8e6;background:#fff;border-radius:13px;overflow:hidden}
+    .day-disclosure summary{cursor:pointer;padding:12px 14px;font-weight:800;color:var(--sea)}
+    .day-disclosure summary:hover{background:#f4faf9}
+    .day-disclosure[open] summary{border-bottom:1px solid #d9e8e6}
+    .day-disclosure .day-plan{border:0;border-radius:0;margin-top:0}
     footer{padding:22px 0 44px;color:var(--muted);font-size:.88rem;text-align:center}
     @media(max-width:720px){
       header{padding-top:44px}
@@ -214,7 +220,72 @@
             <div class="hotel-name">Tam Coc Mountain Lake Homestay</div>
             <div class="addr-block"><div class="addr-label">Address</div><div class="address">Tam Coc Lake, Hoa Lu District, Ninh Binh, Vietnam</div></div>
             <div class="copy-row"><button class="copy-btn" data-copy="Tam Coc Mountain Lake Homestay, Tam Coc Lake, Hoa Lu District, Ninh Binh, Vietnam">Copy address</button></div>
+
+          <div class="note"><b>Weather plan:</b> 8 Oct: prioritise the outdoor climb before the midday heat. 9 Oct: boat trip first, then history. 10 Oct: showers possible; confirm conditions each morning. The boat routes may change after heavy rain.</div>
+          <div class="copy-row day-selector" aria-label="Jump to a Ninh Binh day">
+            <a class="copy-btn" href="details.html?date=2026-10-08">Thu 8 · Mountains + cycling</a>
+            <a class="copy-btn" href="details.html?date=2026-10-09">Fri 9 · Trang An + history</a>
+            <a class="copy-btn" href="details.html?date=2026-10-10">Sat 10 · Nature / rain plan</a>
           </div>
+
+          <details class="day-disclosure">
+            <summary>Thu 8 October · Hang Mua and countryside cycling</summary>
+            <div class="day-plan" data-day="2026-10-08">
+              <div class="day-plan-title">8 October · Mountain viewpoint, temples and quiet lanes</div>
+              <div class="day-stop"><b>08:00–08:30 · Breakfast at the homestay</b><span>Fuel up, take plenty of water and arrange a bicycle if you want to ride for the day.</span></div>
+              <div class="day-stop"><b>08:30–10:30 · Hang Mua viewpoint</b><span>Ride or take a short taxi to Hang Mua; climb the approximately 500 stone steps while it is cooler. Allow time for both the viewpoint and photographs. Skip the climb if steps are slippery.</span>
+                <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Hang+Mua+Viewpoint+Ninh+Binh" target="_blank" rel="noopener">📍 Hang Mua map</a></div>
+              </div>
+              <div class="day-stop"><b>10:30–12:15 · Countryside and Thai Vi Temple</b><span>Take the quieter lanes around Tam Coc and visit Thai Vi Temple (around 30–45 minutes at the temple). Enjoy the scenery without rushing.</span>
+                <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Thai+Vi+Temple+Tam+Coc" target="_blank" rel="noopener">📍 Thai Vi Temple</a></div>
+              </div>
+              <div class="day-stop"><b>12:30–14:00 · Local lunch and heat break</b><span>Eat in or near Tam Coc. Try a Ninh Binh goat dish (dê núi) or crispy rice (cơm cháy).</span></div>
+              <div class="day-stop"><b>14:00–15:15 · Bich Dong Pagoda</b><span>Cycle west to the pagoda set against limestone cliffs. Walk the steps to its upper levels at your own pace.</span>
+                <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Bich+Dong+Pagoda+Ninh+Binh" target="_blank" rel="noopener">📍 Bich Dong map</a></div>
+              </div>
+              <div class="day-stop"><b>15:15–17:00 · Leisurely cycle back through villages</b><span>Explore the rice-field roads and return to the homestay before dark. No need to do the Tam Coc boat ride as well as Trang An tomorrow.</span></div>
+              <div class="day-stop"><b>Evening · Dinner in Tam Coc</b><span>Easy local dinner and an early night after the viewpoint climb.</span></div>
+              <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=Tam+Coc+Mountain+Lake+Homestay+Ninh+Binh&amp;destination=Tam+Coc+Mountain+Lake+Homestay+Ninh+Binh&amp;waypoints=Hang+Mua+Viewpoint+Ninh+Binh%7CThai+Vi+Temple+Ninh+Binh%7CBich+Dong+Pagoda+Ninh+Binh" target="_blank" rel="noopener">🗺️ Open multi-stop route in Google Maps</a></div>
+              <div class="note">Use Google Maps to choose the most suitable roads; cycling directions and some short paths may not be supported locally.</div>
+            </div>
+          </details>
+
+          <details class="day-disclosure">
+            <summary>Fri 9 October · Trang An, Hoa Lu and Am Tien</summary>
+            <div class="day-plan" data-day="2026-10-09">
+              <div class="day-plan-title">9 October · Limestone caves and ancient Vietnam</div>
+              <div class="day-stop"><b>07:30–08:30 · Breakfast and taxi to Trang An</b><span>Get to the main boat-ticket area early to avoid the hottest part of the day and the larger groups.</span>
+                <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Trang+An+Boat+Departure+Ninh+Binh" target="_blank" rel="noopener">📍 Trang An boat departure</a></div>
+              </div>
+              <div class="day-stop"><b>08:30–11:30 · Trang An boat tour</b><span>Allow approximately three hours for rivers, caves and limestone valleys. Ask whether Route 2 is operating and choose it if available. Confirm boat operations and ticket price at the entrance.</span></div>
+              <div class="day-stop"><b>11:45–13:00 · Lunch near Trang An / Hoa Lu</b><span>Try a local restaurant; keep the next stop flexible if the boat runs long.</span></div>
+              <div class="day-stop"><b>13:00–14:30 · Hoa Lu Ancient Capital</b><span>Explore temples recalling the Dinh and Early Le dynasties. A good follow-on from your interest in Vietnamese independence and Chinese cultural influence.</span>
+                <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Hoa+Lu+Ancient+Capital+Ninh+Binh" target="_blank" rel="noopener">📍 Hoa Lu map</a></div>
+              </div>
+              <div class="day-stop"><b>14:45–16:00 · Am Tien Cave / Tuyet Tinh Coc (optional)</b><span>Explore the enclosed lake and cave-temple landscape close to Hoa Lu. If it's too hot or you're tired, skip this and return to Tam Coc sooner.</span>
+                <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Am+Tien+Cave+Ninh+Binh" target="_blank" rel="noopener">📍 Am Tien map</a></div>
+              </div>
+              <div class="day-stop"><b>16:00 onward · Return and dinner in Tam Coc</b><span>Taxi or motorbike taxi is easiest between these spread-out attractions.</span></div>
+              <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=Tam+Coc+Mountain+Lake+Homestay+Ninh+Binh&amp;destination=Tam+Coc+Mountain+Lake+Homestay+Ninh+Binh&amp;waypoints=Trang+An+Boat+Departure+Ninh+Binh%7CHoa+Lu+Ancient+Capital+Ninh+Binh%7CAm+Tien+Cave+Ninh+Binh&amp;travelmode=driving" target="_blank" rel="noopener">🗺️ Open multi-stop route in Google Maps</a></div>
+            </div>
+          </details>
+
+          <details class="day-disclosure">
+            <summary>Sat 10 October · Thung Nham or wet-weather alternative</summary>
+            <div class="day-plan" data-day="2026-10-10">
+              <div class="day-plan-title">10 October · Flexible nature day (check rain forecast)</div>
+              <div class="day-stop"><b>08:00–11:30 · Breakfast and gentle countryside cycling, if dry</b><span>Stay close to Tam Coc and use the morning to visit lanes or cafés you missed. Avoid low-lying routes if flooded.</span></div>
+              <div class="day-stop"><b>12:00–14:00 · Lunch and rest</b><span>Keep this flexible if showers move through.</span></div>
+              <div class="day-stop"><b>14:30–17:00 · Thung Nham Bird Garden, if weather permits</b><span>Walk the nature trails and aim for late-afternoon bird activity as birds return to roost. Check opening time and boat/trail conditions at your accommodation.</span>
+                <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Thung+Nham+Bird+Garden+Ninh+Binh" target="_blank" rel="noopener">📍 Thung Nham map</a></div>
+              </div>
+              <div class="day-stop"><b>Rain alternative · Bai Dinh Pagoda</b><span>If light or intermittent rain makes birdwatching unattractive, consider the huge Buddhist temple complex instead (around 35–45 minutes by road). Parts are covered, but expect outdoor walking. In heavy rain, choose a relaxed café / local-food day rather than a long excursion.</span>
+                <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Bai+Dinh+Pagoda+Ninh+Binh" target="_blank" rel="noopener">📍 Bai Dinh map</a></div>
+              </div>
+              <div class="day-stop"><b>Evening · Final dinner and prepare for departure</b><span>Cat Ba Express pickup from the homestay is listed for 08:45 on Sunday 11 October (09:00 departure); reconfirm with the operator.</span></div>
+              <div class="note"><b>Weather decision:</b> if dry, save Thung Nham for late afternoon rather than first thing. If heavy rain, flooded roads or thunderstorms are forecast, avoid cycling and boat trips.</div>
+            </div>
+          </details>          </div>
         </div>
       </article>
 
@@ -440,6 +511,9 @@
   const selectedDate = new URLSearchParams(location.search).get('date');
   if(selectedDate) document.body.classList.add('selected-mode');
   const today = selectedDate || localISODate();
+  document.querySelectorAll('.day-disclosure').forEach(d=>{
+    if(d.querySelector('.day-plan[data-day="'+today+'"]')) d.open=true;
+  });
   const tripStart='2026-09-27', tripEnd='2026-11-10';
   const cards=[...document.querySelectorAll('.card')];
   const activeCards=cards.filter(c=>today>=c.dataset.start && today<=c.dataset.end);
@@ -506,7 +580,7 @@
 
   document.addEventListener('click', async (e)=>{
     const btn=e.target.closest('.copy-btn');
-    if(!btn) return;
+    if(!btn || !btn.dataset.copy) return;
     const text=btn.dataset.copy;
     try{
       await navigator.clipboard.writeText(text);
