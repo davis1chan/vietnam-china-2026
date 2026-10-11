@@ -110,7 +110,7 @@
   <div class="wrap">
     <a href="index.html">← Family view</a>
     <a href="#today">Selected day</a>
-    <a href="guide.html?city=hanoi">Food & places</a>
+    <a id="guide-nav-link" href="guide.html?city=hanoi">Food & places</a>
   </div>
 </nav>
 
@@ -602,6 +602,7 @@
   const selectedDate = new URLSearchParams(location.search).get('date');
   if(selectedDate) document.body.classList.add('selected-mode');
   const today = selectedDate || localISODate();
+  if(today >= '2026-10-13' && today <= '2026-10-18') document.getElementById('guide-nav-link').href='guide.html?city=xian';
   document.querySelectorAll('.day-disclosure').forEach(d=>{
     if(d.querySelector('.day-plan[data-day="'+today+'"]')) d.open=true;
   });
