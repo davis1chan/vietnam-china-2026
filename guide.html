@@ -56,6 +56,13 @@
     .btn{display:inline-block;text-decoration:none;border:1px solid #cdd8dd;background:#fff;padding:7px 10px;border-radius:9px;font-size:.84rem;font-weight:800}
     .btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
     .empty{padding:28px;background:#fff;border:1px solid var(--line);border-radius:18px;color:var(--muted)}
+    .booking-list{display:grid;gap:11px}
+    .booking-item{background:white;border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:var(--shadow)}
+    .booking-item b{display:block;margin-bottom:5px}.booking-item p{color:#526474;margin:0 0 10px}
+    .hotel-help{background:#fff;border:1px solid var(--line);border-radius:15px;margin-top:16px;padding:16px}
+    .hotel-help summary{cursor:pointer;font-weight:800}
+    .hotel-help p{color:var(--muted)}
+    #hotel-message{display:block;width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font:inherit;line-height:1.6;resize:vertical;color:var(--ink);background:#f7f9fa}
     footer{padding:0 0 40px;text-align:center;color:var(--muted);font-size:.86rem}
     @media(max-width:720px){header{padding-top:42px}.grid,.plan-grid{grid-template-columns:1fr}.section-heading{align-items:start;flex-direction:column;gap:2px}}
   </style>
@@ -72,7 +79,7 @@
 <nav>
   <div class="wrap" id="nav">
     <a href="details.html">← Full itinerary</a>
-    <a href="#plan">2-day plan</a>
+    <a href="#plan">Day plans</a>
     <a href="#food">Food</a>
   </div>
 </nav>
@@ -80,12 +87,17 @@
 <main class="wrap">
   <section class="intro" id="intro"></section>
   <section id="plan">
-    <div class="section-heading"><h2>Two full days in Hanoi</h2><p>Walk, eat, explore — not a checklist</p></div>
+    <div class="section-heading"><h2 id="plan-heading">Day plans</h2><p id="plan-subtitle"></p></div>
     <div class="plan-grid" id="plan-grid"></div>
   </section>
   <section id="food">
-    <div class="section-heading"><h2>Food shortlist</h2><p>Michelin picks and useful backups</p></div>
+    <div class="section-heading"><h2 id="food-heading">Food shortlist</h2><p id="food-subtitle"></p></div>
     <div class="grid" id="grid"></div>
+  </section>
+  <section id="booking" hidden>
+    <div class="section-heading"><h2>Booking checklist & hotel help</h2><p>Passport-linked reservations; verify availability</p></div>
+    <div class="booking-list" id="booking-list"></div>
+    <details class="hotel-help"><summary>🇨🇳 Copy Chinese request to your Xi’an hotel</summary><p>Send via Trip.com chat. Ask about agency fees and cancellation terms.</p><textarea id="hotel-message" readonly rows="9"></textarea><div class="actions"><button class="btn primary" id="copy-hotel" type="button">Copy hotel message</button></div></details>
   </section>
 </main>
 
@@ -209,6 +221,229 @@ const guides = {
         michelinUrl:'https://guide.michelin.com/vn/en/ha-noi/ha-noi_2974158/restaurant/pho-ha-hang-hom'
       }
     ]
+  },
+  xian: {
+    "name": "Xi'an",
+    "dates": "13–18 October 2026 · four sightseeing days",
+    "origin": "Nanfeng Hotel · 南枫酒店, 18 West Bangzishi Street (13–17 Oct); Sky Garden Rooftop Social Hostel · 大皮院84号巷内 (17 Oct)",
+    "note": "Late landing at 23:50 on 13 Oct: sleep in on the 14th. Old-city walking and eating first; Huashan on the 15th (weather swap possible); Terracotta Army on the 16th; museum, pagoda and Tang district on the 17th. Food focus: small neighbourhood shops in Sajinqiao, Dapiyuan and Xiyangshi rather than only the main tourist strip.",
+    "planHeading": "Four days in Xi’an",
+    "planSubtitle": "Easy arrival day · Huashan hike · Terracotta Army · Tang history",
+    "foodHeading": "What and where to eat in Xi’an",
+    "foodSubtitle": "Local dishes and modest restaurants — not a Michelin checklist",
+    "plans": [
+      {
+        "title": "Wed 14 Oct · Old city + local food",
+        "sub": "Sleep in after the late flight · Bell & Drum Towers → Muslim Quarter → Great Mosque → City Wall",
+        "stops": [
+          [
+            "10:00–11:30 · Slow start near Nanfeng Hotel",
+            "Breakfast or brunch locally; explore Bell Tower 钟楼 and Drum Tower 鼓楼. You can appreciate both from outside without buying two tower tickets."
+          ],
+          [
+            "12:00 · Biangbiang noodle lunch",
+            "Try biangbiang / 油泼面 at Biangbiang Mian on Nanyuanmen (map in the food list below). Wide noodles, chilli oil, vinegar and garlic."
+          ],
+          [
+            "13:00–15:30 · Great Mosque + backstreets",
+            "Visit 西安清真大寺, then wander Dapiyuan 大皮院, Xiyangshi 西羊市 and quieter lanes. Try sesame liangpi 凉皮 as a snack; the main Beiyuanmen strip can be tourist-heavy."
+          ],
+          [
+            "16:00–18:30 · Xi’an City Wall",
+            "Enter at Yongningmen 永宁门 (South Gate) for a late-afternoon stroll or rent a bicycle for part of the ramparts. Confirm last admission and bicycle rental hours on the day."
+          ],
+          [
+            "19:00 · Sajinqiao food neighbourhood",
+            "Dinner at Liu Xin paomo (刘信泡馍) for lamb/bread soup, or Ma’er sour-soup dumplings (马二酸汤水饺). Browse stalls on Sajinqiao 洒金桥."
+          ]
+        ],
+        "tip": "This is deliberately NOT the Terracotta Army day. Rough costs: snacks ¥8–20, noodles ¥15–30, paomo ¥25–45; confirm locally. City Wall cycling is optional.",
+        "map": "https://www.google.com/maps/search/?api=1&query=Xi'an%20Bell%20Tower%20%E8%A5%BF%E5%AE%89%E9%92%9F%E6%A5%BC"
+      },
+      {
+        "title": "Thu 15 Oct · Mount Huashan",
+        "sub": "Committed hiking route · West Peak cable car UP → South → East → Central → North Peak cable car DOWN",
+        "stops": [
+          [
+            "Around 06:30–07:30 · Reach Xi’an North 西安北",
+            "Early taxi/DiDi to Xi’an North, then reserved high-speed train to Huashan North 华山北 (often around 30–40 min). Departure times must be checked and booked."
+          ],
+          [
+            "08:30–10:00 · Transfer and ascent",
+            "From Huashan North take the mountain shuttle/transfer to the scenic-area entrance, then the West Peak 西峰 cable car upward. Allow queues; all times are approximate."
+          ],
+          [
+            "10:00–15:30 · Hike between peaks",
+            "Walk West 西峰 → South 南峰 (highest summit) → East 东峰 → Central 中峰 → North 北峰. Plan about 4–6 hours of walking, potentially longer with queues and viewpoints. Lots of steep stone steps."
+          ],
+          [
+            "Before cable-car closing · North Peak descent",
+            "Take the North Peak 北峰 cable car down and the required shuttle. Reconfirm the actual last cable-car time before starting; shorten the hike if necessary."
+          ],
+          [
+            "Evening · Train back + simple dinner",
+            "Return from Huashan North to Xi’an North. After the hike, a Fanji roujiamo 肉夹馍 with liangpi is an easy dinner near the old city."
+          ]
+        ],
+        "tip": "Keep the 16th as an exchangeable weather day if Huashan is wet, windy or closed. Wear grippy shoes; take water, snacks, an extra layer and waterproof. The cliffside plank walk is OPTIONAL and not part of the planned route. Confirm separate admission, both cable cars, shuttle legs and train tickets.",
+        "map": "https://www.google.com/maps/search/?api=1&query=Mount%20Hua%20%E5%8D%8E%E5%B1%B1%20%E8%A5%BF%E5%B3%B0"
+      },
+      {
+        "title": "Fri 16 Oct · Terracotta Army",
+        "sub": "Qin-era archaeology · Museum pits → Lishan Garden → relaxed old-city dinner",
+        "stops": [
+          [
+            "08:00–09:00 · Breakfast and departure",
+            "Try meatball pepper soup 肉丸胡辣汤 in the Muslim neighbourhood if available, then DiDi/taxi or public transport to the site in Lintong (allow roughly an hour, traffic permitting)."
+          ],
+          [
+            "10:00–13:00 · Terracotta Warriors 兵马俑",
+            "See Pit 1, Pit 2 and Pit 3. A guide or good audio guide adds historical context; Pit 2 may have partial exhibition restrictions, so check notices."
+          ],
+          [
+            "13:00–15:00 · Lishan Garden 丽山园",
+            "Use the official included shuttle between the museum and Qin mausoleum archaeological park; explore the site and bronze chariots display where open."
+          ],
+          [
+            "Late afternoon · Return to the centre",
+            "Head back to Xi’an with time for a rest. The official museum adult ticket is ¥120 with passport-linked reservation."
+          ],
+          [
+            "19:00 · Dumplings",
+            "Try Jia San 灌汤包子 on Xiyangshi for soup dumplings, or Ma’er 酸汤水饺 for tangy dumplings if preferred."
+          ]
+        ],
+        "tip": "Book before travelling and bring the passport used in the reservation. Allow enough time for both museum areas; the official shuttle between Terracotta Army and Lishan Garden is included.",
+        "map": "https://www.google.com/maps/search/?api=1&query=Emperor%20Qinshihuang's%20Mausoleum%20Site%20Museum%20Terracotta%20Army"
+      },
+      {
+        "title": "Sat 17 Oct · Tang Xi’an + hotel move",
+        "sub": "Check out Nanfeng → Sky Garden (Dapiyuan) → Shaanxi History Museum → Big Wild Goose Pagoda",
+        "stops": [
+          [
+            "09:00–10:00 · Move hotel / bag drop",
+            "Move to Sky Garden Rooftop Social Hostel, 84 Dapiyuan 大皮院84号巷内; ask reception to hold your bag before check-in."
+          ],
+          [
+            "10:30–12:30 · Shaanxi History Museum 陕西历史博物馆",
+            "Strong context for the Zhou, Qin, Han and Tang dynasties. FREE but timed reservation essential; the main building releases slots five days ahead at 17:00 China time. For Sat 17 Oct, try Mon 12 Oct at 17:00."
+          ],
+          [
+            "13:00 · Local lunch around Xiaozhai",
+            "Find a simple noodle or dumpling shop near the museum rather than a packaged group meal."
+          ],
+          [
+            "14:00–16:30 · Big Wild Goose Pagoda 大雁塔",
+            "Explore the Da Ci’en Temple / pagoda precinct, linked to Xuanzang’s journey to India and the transmission of Buddhist texts."
+          ],
+          [
+            "17:00–20:00 · Datang Everbright City 大唐不夜城",
+            "Walk the illuminated Tang-themed district after dark. It is theatrical and touristy, but atmospheric; eat near Xiaozhai or along adjoining streets."
+          ],
+          [
+            "Evening · Return to Dapiyuan",
+            "Wander the neighbourhood food stalls or try a bowl of paomo / sour-soup dumplings if something was missed."
+          ]
+        ],
+        "tip": "The museum ticket is the most time-sensitive item — ask the hotel to help if the official WeChat booking is difficult. Do not assume hotel staff can book without your passport details.",
+        "map": "https://www.google.com/maps/search/?api=1&query=Shaanxi%20History%20Museum%20Xi'an"
+      }
+    ],
+    "places": [
+      {
+        "name": "Biangbiang Mian · 𰻞𰻞面",
+        "tier": "core",
+        "label": "Core pick",
+        "meal": "Lunch · 14 Oct",
+        "walk": "Near Nanyuanmen, old city",
+        "dish": "Try: biangbiang / 油泼面, chilli-oil hand-pulled belt noodles (roughly ¥15–30)",
+        "desc": "Big chewy noodles with chilli, garlic and vinegar; excellent first-day introduction to Shaanxi cooking.",
+        "address": "80 Nanyuanmen, Beilin District, Xi’an · 南院门80号",
+        "map": "https://www.google.com/maps/search/?api=1&query=Biangbiang%20Mian%2080%20Nanyuanmen%20Xi'an"
+      },
+      {
+        "name": "Liu Xin paomo · 刘信泡馍",
+        "tier": "core",
+        "label": "Core pick",
+        "meal": "Dinner · 14 Oct",
+        "walk": "Sajinqiao food street",
+        "dish": "Try: 羊肉泡馍, bread pieces in rich lamb broth (roughly ¥25–45)",
+        "desc": "A very Xi’an experience. Some shops invite you to tear the bread yourself; ask if unsure how to order.",
+        "address": "Around 129 Sajinqiao, Lianhu District · 洒金桥129号",
+        "map": "https://www.google.com/maps/search/?api=1&query=%E5%88%98%E4%BF%A1%E6%B3%A1%E9%A6%8D%20%E6%B4%92%E9%87%91%E6%A1%A5129%20%E8%A5%BF%E5%AE%89"
+      },
+      {
+        "name": "Ma’er sour-soup dumplings · 马二酸汤水饺",
+        "tier": "core",
+        "label": "Core pick",
+        "meal": "Lunch or dinner · 14 / 16 Oct",
+        "walk": "Sajinqiao, next to Liu Xin",
+        "dish": "Try: 酸汤水饺, dumplings in vinegar-chilli broth (roughly ¥15–30)",
+        "desc": "A punchy sour, spicy option if paomo feels too heavy. A useful second choice on the same street.",
+        "address": "131 Sajinqiao, Lianhu District · 洒金桥131号",
+        "map": "https://www.google.com/maps/search/?api=1&query=%E9%A9%AC%E4%BA%8C%E9%85%B8%E6%B1%A4%E6%B0%B4%E9%A5%BA%20%E6%B4%92%E9%87%91%E6%A1%A5131%20%E8%A5%BF%E5%AE%89"
+      },
+      {
+        "name": "Fanji roujiamo · 樊记腊汁肉夹馍",
+        "tier": "core",
+        "label": "Core pick",
+        "meal": "Quick dinner · after Huashan",
+        "walk": "Zhubashi / Bell Tower area",
+        "dish": "Try: 肉夹馍 plus 凉皮, crispy meat-filled flatbread and cold noodles (roughly ¥25–40)",
+        "desc": "Ideal after a mountain day. The classic Fanji pork filling is different from the beef/lamb roujiamo sold in Muslim neighbourhood shops.",
+        "address": "Zhubashi, near the Bell Tower, Beilin District · 竹笆市",
+        "map": "https://www.google.com/maps/search/?api=1&query=%E6%A8%8A%E8%AE%B0%E8%85%8A%E6%B1%81%E8%82%89%E5%A4%B9%E9%A6%8D%20%E7%AB%B9%E7%AC%86%E5%B8%82%20%E8%A5%BF%E5%AE%89"
+      },
+      {
+        "name": "Jia San soup dumplings · 贾三灌汤包子",
+        "tier": "core",
+        "label": "Core pick",
+        "meal": "Dinner · 16 Oct",
+        "walk": "Xiyangshi near Muslim Quarter",
+        "dish": "Try: 灌汤包子, delicate broth-filled dumplings; check the meat filling (roughly ¥25–40)",
+        "desc": "Traditional soup dumplings, commonly served with beef or lamb in this part of town. A good lighter alternative to paomo.",
+        "address": "121 Xiyangshi, Lianhu District · 西羊市街121号",
+        "map": "https://www.google.com/maps/search/?api=1&query=%E8%B4%BE%E4%B8%89%E7%81%8C%E6%B1%A4%E5%8C%85%E5%AD%90%20%E8%A5%BF%E7%BE%8A%E5%B8%82121%20%E8%A5%BF%E5%AE%89"
+      },
+      {
+        "name": "Qinyu roujiamo · 秦豫肉夹馍",
+        "tier": "backup",
+        "label": "Extra option",
+        "meal": "Lunch · flexible",
+        "walk": "East Mutoushi, south-east old city",
+        "dish": "Try: 腊汁肉夹馍 (braised pork in toasted bread) with a drink",
+        "desc": "Another well-known old-city roujiamo shop if you are nearby; no need to cross town just for one sandwich.",
+        "address": "19 East Mutoushi, Beilin District · 东木头市19号",
+        "map": "https://www.google.com/maps/search/?api=1&query=%E7%A7%A6%E8%B1%AB%E8%82%89%E5%A4%B9%E9%A6%8D%20%E4%B8%9C%E6%9C%A8%E5%A4%B4%E5%B8%8219%20%E8%A5%BF%E5%AE%89"
+      }
+    ],
+    "bookings": [
+      {
+        "title": "Tomorrow (12 Oct) at 17:00 Beijing time · Shaanxi History Museum",
+        "detail": "For 17 Oct, free timed admission opens five days ahead. Book with the original passport; if booking is difficult ask Nanfeng to help. The site shows 8:30–19:00 in October, last entry 18:00.",
+        "url": "https://en.sxhm.com/en/new/visit.html",
+        "button": "Official museum instructions"
+      },
+      {
+        "title": "Now · Terracotta Army for 16 Oct",
+        "detail": "Official adult ticket ¥120. Foreign passport accepted for real-name online reservation. Includes access to both the Warriors pits and Lishan Garden, with connecting shuttle. Pit 2 has had phased works: check current visitor notices.",
+        "url": "https://www.bmy.com.cn/jingtai/bmyweb/ticketing.html",
+        "button": "Official tickets and rules"
+      },
+      {
+        "title": "Before 15 Oct · Huashan + both cable cars",
+        "detail": "Reserve scenic admission, West Peak cable car up, North Peak cable car down and the correct shuttle legs. Confirm weather, current cable-car operating times and any closures before setting off.",
+        "url": "https://www.google.com/maps/search/?api=1&query=Mount%20Hua%20%E8%A5%BF%E5%B3%B0%E7%B4%A2%E9%81%93%20%E5%8D%8E%E5%B1%B1%20%E6%B8%B8%E5%AE%A2%E4%B8%AD%E5%BF%83",
+        "button": "Huashan visitor-centre map"
+      },
+      {
+        "title": "Before 15 Oct · train and hotel assistance",
+        "detail": "Book Xi’an North 西安北 ↔ Huashan North 华山北 return trains via 12306/Trip.com. The hotel may help with tickets and transport but availability and any fee need confirmation. Your 13 Oct 23:50 arrival requires late check-in and an airport taxi/DiDi.",
+        "url": "https://www.12306.cn/index/",
+        "button": "12306 railway"
+      }
+    ],
+    "hotelMessage": "您好！我将于10月13日23:50抵达西安，预计14日凌晨入住。请问可以协助预订以下项目吗？\n1. 10月15日华山门票、西峰索道上山、北峰索道下山及两段景区接驳车；\n2. 10月16日秦始皇兵马俑门票；\n3. 10月17日陕西历史博物馆预约；\n4. 10月15日西安北站至华山北站的往返高铁票。\n我持英国护照。请告知各项价格、服务费及退改规则，并确认10月14日凌晨可以办理入住。谢谢！"
   }
 };
 
@@ -233,15 +468,20 @@ document.getElementById('intro').innerHTML=
   '<h2>'+esc(g.name)+' guide</h2>'+
   '<p>'+esc(g.note)+'</p>'+
   '<div class="origin"><b>Starting point:</b> '+esc(g.origin)+'</div>'+
-  '<div class="legend"><span class="pill bib">MICHELIN Bib Gourmand</span><span class="pill core">Core pick</span><span class="pill backup">Backup</span></div>';
+  '<div class="legend">'+(g.places.some(p=>p.michelin)?'<span class="pill bib">MICHELIN Bib Gourmand</span>':'')+'<span class="pill core">Core pick</span><span class="pill backup">Backup / extra</span></div>';
 
+document.getElementById('plan-heading').textContent=g.planHeading||'Two full days in Hanoi';
+document.getElementById('plan-subtitle').textContent=g.planSubtitle||'Walk, eat, explore — not a checklist';
+document.getElementById('food-heading').textContent=g.foodHeading||'Food shortlist';
+document.getElementById('food-subtitle').textContent=g.foodSubtitle||'Michelin picks and useful backups';
 const planGrid=document.getElementById('plan-grid');
 (g.plans||[]).forEach(d=>{
   const card=document.createElement('article');
   card.className='day-card';
-  card.innerHTML='<div class="eyebrow" style="color:#2c7a7b;opacity:1">Hanoi day plan</div><h3>'+esc(d.title)+'</h3><div class="day-sub">'+esc(d.sub)+'</div>'+
+  card.innerHTML='<div class="eyebrow" style="color:#2c7a7b;opacity:1">'+esc(g.name)+' day plan</div><h3>'+esc(d.title)+'</h3><div class="day-sub">'+esc(d.sub)+'</div>'+
     d.stops.map(s=>'<div class="stop"><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>').join('')+
-    '<div class="tip">'+esc(d.tip)+'</div>';
+    '<div class="tip">'+esc(d.tip)+'</div>'+
+    (d.map?'<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="'+esc(d.map)+'">📍 Day’s main map point</a></div>':'');
   planGrid.appendChild(card);
 });
 
@@ -250,16 +490,37 @@ g.places.forEach(p=>{
   const card=document.createElement('article');
   card.className='food-card';
   card.innerHTML=
-    '<div><span class="pill bib">'+esc(p.michelin)+'</span> <span class="pill '+esc(p.tier)+'">'+esc(p.label)+'</span></div>'+
+    '<div>'+(p.michelin?'<span class="pill bib">'+esc(p.michelin)+'</span> ':'')+'<span class="pill '+esc(p.tier)+'">'+esc(p.label)+'</span></div>'+
     '<h3>'+esc(p.name)+'</h3>'+
     '<div class="meta">'+esc(p.meal)+' · '+esc(p.walk)+'</div>'+
     '<div class="dish">'+esc(p.dish)+'</div>'+
     '<p class="desc">'+esc(p.desc)+'</p>'+
     '<div class="addr">'+esc(p.address)+'</div>'+
     '<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="'+p.map+'">Open map</a>'+
-    '<a class="btn" target="_blank" rel="noopener" href="'+p.michelinUrl+'">Michelin Guide</a></div>';
+    (p.michelinUrl?'<a class="btn" target="_blank" rel="noopener" href="'+esc(p.michelinUrl)+'">Michelin Guide</a>':'')+'</div>';
   grid.appendChild(card);
 });
+if(g.bookings&&g.bookings.length){
+  document.getElementById('booking').hidden=false;
+  const list=document.getElementById('booking-list');
+  g.bookings.forEach(b=>{
+    const row=document.createElement('article');row.className='booking-item';
+    row.innerHTML='<b>'+esc(b.title)+'</b><p>'+esc(b.detail)+'</p>'+
+      (b.url?'<a class="btn" href="'+esc(b.url)+'" target="_blank" rel="noopener">'+esc(b.button||'Official information')+' ↗</a>':'');
+    list.appendChild(row);
+  });
+  if(g.hotelMessage){
+    document.getElementById('hotel-message').value=g.hotelMessage;
+    document.getElementById('copy-hotel').addEventListener('click',async()=>{
+      const button=document.getElementById('copy-hotel');
+      const field=document.getElementById('hotel-message');
+      try{await navigator.clipboard.writeText(field.value);}
+      catch(e){field.select();document.execCommand('copy');}
+      button.textContent='Copied ✓';
+      setTimeout(()=>button.textContent='Copy hotel message',1500);
+    });
+  }
+}
 </script>
 </body>
 </html>
