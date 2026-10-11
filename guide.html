@@ -226,7 +226,7 @@ const guides = {
     "name": "Xi'an",
     "dates": "13–18 October 2026 · four sightseeing days",
     "origin": "Nanfeng Hotel · 南枫酒店, 18 West Bangzishi Street (13–17 Oct); Sky Garden Rooftop Social Hostel · 大皮院84号巷内 (17 Oct)",
-    "note": "Late landing at 23:50 on 13 Oct: sleep in on the 14th. Old-city walking and eating first; Huashan on the 15th (weather swap possible); Terracotta Army on the 16th; museum, pagoda and Tang district on the 17th. Food focus: small neighbourhood shops in Sajinqiao, Dapiyuan and Xiyangshi rather than only the main tourist strip.",
+    "note": "Late landing at 23:50 on 13 Oct: sleep in on the 14th. Old-city walking and eating first; Huashan on the 15th (weather swap possible); Terracotta Army on the 16th; museum, pagoda and Tang district on the 17th. Food focus: small neighbourhood shops in Sajinqiao, Dapiyuan and Xiyangshi rather than only the main tourist strip. For navigation in mainland China, Apple Maps or Amap is more dependable than Google Maps.",
     "planHeading": "Four days in Xi’an",
     "planSubtitle": "Easy arrival day · Huashan hike · Terracotta Army · Tang history",
     "foodHeading": "What and where to eat in Xi’an",
@@ -496,7 +496,8 @@ g.places.forEach(p=>{
     '<div class="dish">'+esc(p.dish)+'</div>'+
     '<p class="desc">'+esc(p.desc)+'</p>'+
     '<div class="addr">'+esc(p.address)+'</div>'+
-    '<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="'+p.map+'">Open map</a>'+
+    '<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="'+esc(p.map)+'">Google map</a>'+ 
+    '<a class="btn" target="_blank" rel="noopener" href="https://maps.apple.com/?q='+encodeURIComponent(p.name+' '+p.address)+'">Apple Maps</a>'+
     (p.michelinUrl?'<a class="btn" target="_blank" rel="noopener" href="'+esc(p.michelinUrl)+'">Michelin Guide</a>':'')+'</div>';
   grid.appendChild(card);
 });
