@@ -44,6 +44,14 @@
     .stop:first-of-type{border-top:0}
     .stop b{display:block;font-size:.94rem;color:var(--ink)}
     .stop span{display:block;margin-top:2px;color:#526474;font-size:.89rem;line-height:1.48}
+    .guide-amap{margin-top:12px;padding:12px;background:#f7f9fa;border:1px solid var(--line);border-radius:12px}
+    .guide-amap-title{font-weight:800;margin:0 0 7px;font-size:.94rem}
+    .guide-amap-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+    .guide-amap-row{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+    .guide-amap-row span{display:block;font-size:.76rem;color:var(--muted)}
+    .guide-amap-row strong{display:block;font-size:.9rem;color:var(--ink);overflow-wrap:anywhere}
+    .guide-amap-row button{cursor:pointer;flex-shrink:0}
+    @media(max-width:720px){.guide-amap-grid{grid-template-columns:1fr}}
     .tip{margin-top:14px;padding:11px 13px;background:#eef7f5;border-left:3px solid var(--sea);border-radius:0 10px 10px 0;color:#3f5f5b;font-size:.9rem}
     .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
     .food-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
@@ -235,6 +243,7 @@ const guides = {
         {
           "title": "Wed 14 Oct · City Wall + towers at night",
           "sub": "Revised midday start · lunch → West Gate–South Gate City Wall walk → Great Mosque → historic lanes → Drum Tower → illuminated Bell Tower → Muslim Quarter dinner",
+          "amapStops": [["Hotel · start / finish","南枫酒店(西安钟鼓楼回民街店)"],["West Gate · wall entrance","安定门"],["South Gate · wall exit","永宁门"],["Great Mosque","西安清真大寺"],["Dapiyuan lane","大皮院"],["Xiyangshi food street","西羊市"],["Drum Tower","西安鼓楼"],["Bell Tower","西安钟楼"],["Muslim Quarter","回民街"],["Liu Xin Paomo","刘信泡馍"],["Ma'er dumplings","马二酸汤水饺"]],
           "stops": [
             [
               "12:00–12:45 · Lunch near Nanfeng Hotel",
@@ -492,9 +501,20 @@ const planGrid=document.getElementById('plan-grid');
   card.className='day-card';
   card.innerHTML='<div class="eyebrow" style="color:#2c7a7b;opacity:1">'+esc(g.name)+' day plan</div><h3>'+esc(d.title)+'</h3><div class="day-sub">'+esc(d.sub)+'</div>'+
     d.stops.map(s=>'<div class="stop"><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div>').join('')+
+    (d.amapStops?'<div class="guide-amap"><div class="guide-amap-title">📍 Chinese names for 高德地图 (Amap) · tap Copy</div><div class="guide-amap-grid">'+d.amapStops.map(s=>'<div class="guide-amap-row"><div><span>'+esc(s[0])+'</span><strong lang="zh-CN">'+esc(s[1])+'</strong></div><button type="button" class="btn" data-amap-copy="'+esc(s[1])+'">Copy</button></div>').join('')+'</div></div>':'')+
     '<div class="tip">'+esc(d.tip)+'</div>'+
     (d.map?'<div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="'+esc(d.map)+'">📍 Day’s main map point</a></div>':'');
   planGrid.appendChild(card);
+});
+
+planGrid.addEventListener('click',async e=>{
+  const btn=e.target.closest('button[data-amap-copy]');
+  if(!btn) return;
+  const value=btn.dataset.amapCopy;
+  try{await navigator.clipboard.writeText(value);}
+  catch(err){const ta=document.createElement('textarea');ta.value=value;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+  btn.textContent='Copied ✓';
+  setTimeout(()=>{btn.textContent='Copy'},1500);
 });
 
 const grid=document.getElementById('grid');
