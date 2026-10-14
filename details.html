@@ -74,6 +74,17 @@
     .day-stop b{display:block;font-size:.94rem}
     .day-stop span{display:block;color:var(--muted);font-size:.89rem;margin-top:2px;line-height:1.45}
     .day-plan .copy-row{margin-top:5px}
+    .amap-quicklist{background:#fff;border:1px solid #cddfdc;border-radius:12px;padding:12px;margin:12px 0 14px}
+    .amap-quicklist h4{margin:0 0 3px;font-size:.98rem}
+    .amap-hint{font-size:.82rem;color:var(--muted);margin:0 0 10px}
+    .amap-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+    .amap-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;background:#f7f9fa;border:1px solid #e8edef;border-radius:9px;min-width:0}
+    .amap-label{min-width:0}
+    .amap-en{display:block;color:var(--muted);font-size:.75rem}
+    .amap-zh{display:block;color:var(--ink);font-weight:750;font-size:.93rem;overflow-wrap:anywhere}
+    .amap-item .copy-btn{white-space:nowrap;flex-shrink:0}
+    @media(max-width:720px){.amap-grid{grid-template-columns:1fr}}
+
     .day-selector{margin:12px 0 5px}
     .day-disclosure{margin:12px 0;border:1px solid #d9e8e6;background:#fff;border-radius:13px;overflow:hidden}
     .day-disclosure summary{cursor:pointer;padding:12px 14px;font-weight:800;color:var(--sea)}
@@ -351,6 +362,23 @@
             <summary>Wed 14 October · City Wall by day, Bell &amp; Drum Towers after dark</summary>
             <div class="day-plan" data-day="2026-10-14">
               <div class="day-plan-title">Revised midday start · save the illuminated towers for tonight</div>
+              <div class="amap-quicklist" aria-label="Chinese names for Amap on 14 October">
+                <h4>📍 Chinese names for Amap · 一键复制</h4>
+                <p class="amap-hint">Tap “Copy” and paste into 高德地图 (Amap). For the wall walk, navigate to West Gate first, then follow the ramparts to South Gate.</p>
+                <div class="amap-grid">
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">Hotel · start / finish</span><span class="amap-zh" lang="zh-CN">南枫酒店(西安钟鼓楼回民街店)</span></div><button type="button" class="copy-btn" data-copy="南枫酒店(西安钟鼓楼回民街店)" aria-label="Copy Hotel · start / finish Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">West Gate · City Wall entrance</span><span class="amap-zh" lang="zh-CN">安定门</span></div><button type="button" class="copy-btn" data-copy="安定门" aria-label="Copy West Gate · City Wall entrance Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">South Gate · City Wall exit</span><span class="amap-zh" lang="zh-CN">永宁门</span></div><button type="button" class="copy-btn" data-copy="永宁门" aria-label="Copy South Gate · City Wall exit Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">Great Mosque</span><span class="amap-zh" lang="zh-CN">西安清真大寺</span></div><button type="button" class="copy-btn" data-copy="西安清真大寺" aria-label="Copy Great Mosque Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">Dapiyuan historic lane</span><span class="amap-zh" lang="zh-CN">大皮院</span></div><button type="button" class="copy-btn" data-copy="大皮院" aria-label="Copy Dapiyuan historic lane Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">Xiyangshi food street</span><span class="amap-zh" lang="zh-CN">西羊市</span></div><button type="button" class="copy-btn" data-copy="西羊市" aria-label="Copy Xiyangshi food street Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">Drum Tower</span><span class="amap-zh" lang="zh-CN">西安鼓楼</span></div><button type="button" class="copy-btn" data-copy="西安鼓楼" aria-label="Copy Drum Tower Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">Bell Tower</span><span class="amap-zh" lang="zh-CN">西安钟楼</span></div><button type="button" class="copy-btn" data-copy="西安钟楼" aria-label="Copy Bell Tower Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">Muslim Quarter · dinner</span><span class="amap-zh" lang="zh-CN">回民街</span></div><button type="button" class="copy-btn" data-copy="回民街" aria-label="Copy Muslim Quarter · dinner Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">Liu Xin Paomo · dinner option</span><span class="amap-zh" lang="zh-CN">刘信泡馍</span></div><button type="button" class="copy-btn" data-copy="刘信泡馍" aria-label="Copy Liu Xin Paomo · dinner option Chinese name">Copy</button></div>
+                  <div class="amap-item"><div class="amap-label"><span class="amap-en">Ma'er sour-soup dumplings</span><span class="amap-zh" lang="zh-CN">马二酸汤水饺</span></div><button type="button" class="copy-btn" data-copy="马二酸汤水饺" aria-label="Copy Ma'er sour-soup dumplings Chinese name">Copy</button></div>
+                </div>
+              </div>
               <div class="day-stop"><b>12:00–12:45 · Local lunch near Nanfeng Hotel</b><span>Eat nearby before setting off. Try biangbiang noodles 油泼面 / 𰻞𰻞面, roujiamo 肉夹馍, or anything appealing in the local shops.</span></div>
               <div class="day-stop"><b>13:00–15:00 · Xi’an City Wall 西安城墙</b><span>Head to West Gate 安定门 (Andingmen) and enter the wall. Walk the ramparts in the direction of South Gate 永宁门 (Yongningmen); no need to complete the full circuit. Cycling is optional; check ticketing and gate access on arrival.</span></div>
               <div class="day-stop"><b>15:00–15:30 · Make your way to the Great Mosque</b><span>From the South Gate area, walk or take a short taxi/metro ride towards the Muslim Quarter. Allow travel time rather than assuming the sights are adjacent.</span></div>
