@@ -48,6 +48,13 @@
       .section-head{display:block}
       .section-head span{display:block;margin-top:3px}
     }
+    .history-fold{margin-top:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.75);overflow:hidden}
+    .history-fold summary{cursor:pointer;padding:15px 18px;font-weight:800;color:var(--sea)}
+    .history-fold summary:hover{background:#fff}
+    .history-fold .timeline{padding:0 12px 12px}
+    .history-fold .trip-card{box-shadow:none}
+    .history-count{color:var(--muted);font-size:.87rem;font-weight:600}
+    [hidden]{display:none!important}
   </style>
 </head>
 <body>
@@ -70,10 +77,14 @@
 
   <section>
     <div class="section-head">
-      <h2>Trip itinerary</h2>
+      <h2>Current & upcoming</h2>
       <span>Tap any stop for full details</span>
     </div>
     <div class="timeline" id="timeline"></div>
+    <details class="history-fold" id="history-fold" hidden>
+      <summary>Earlier stops <span class="history-count" id="past-count"></span></summary>
+      <div class="timeline" id="past-timeline"></div>
+    </details>
   </section>
 </main>
 
@@ -100,12 +111,15 @@ const stops=[
   {start:'2026-11-10',end:'2026-11-10',dates:'10 Nov',place:'Hong Kong → London',stay:'Homeward bound',travel:'Air China via Beijing'}
 ];
 
+// The tracker follows the traveller's local date, not the family viewer's timezone.
+function zonedISODate(timeZone){
+  const parts=new Intl.DateTimeFormat('en-GB',{timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const get=type=>parts.find(p=>p.type===type).value;
+  return get('year')+'-'+get('month')+'-'+get('day');
+}
 function localISODate(){
-  const d=new Date();
-  const y=d.getFullYear();
-  const m=String(d.getMonth()+1).padStart(2,'0');
-  const day=String(d.getDate()).padStart(2,'0');
-  return y+'-'+m+'-'+day;
+  const china=zonedISODate('Asia/Shanghai');
+  return china>='2026-09-30'&&china<'2026-10-13'?zonedISODate('Asia/Ho_Chi_Minh'):china;
 }
 function pretty(iso){
   return new Intl.DateTimeFormat('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})
@@ -115,6 +129,9 @@ function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt
 
 const today=localISODate();
 const timeline=document.getElementById('timeline');
+const pastTimeline=document.getElementById('past-timeline');
+const pastFold=document.getElementById('history-fold');
+let pastCount=0;
 stops.forEach(s=>{
   const current=today>=s.start&&today<=s.end;
   const a=document.createElement('a');
@@ -123,9 +140,14 @@ stops.forEach(s=>{
   a.innerHTML='<div class="date"><strong>'+esc(s.dates)+'</strong><span>'+ (current?'Today':'') +'</span></div>'+
               '<div class="main"><strong>'+esc(s.place)+'</strong><span>'+esc(s.stay)+' · '+esc(s.travel)+'</span></div>'+
               '<div class="arrow">›</div>';
-  timeline.appendChild(a);
+  if(s.end<today){pastTimeline.appendChild(a);pastCount++;}else{timeline.appendChild(a);}
 });
 
+pastFold.hidden=pastCount===0;
+document.getElementById('past-count').textContent='('+pastCount+')';
+if(!timeline.children.length){
+  document.querySelector('.section-head h2').textContent='Trip completed';
+}
 const title=document.getElementById('today-title');
 const date=document.getElementById('today-date');
 const grid=document.getElementById('today-grid');
