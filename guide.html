@@ -688,12 +688,12 @@ const requested=params.get('city')||(
   travelDate>='2026-10-22'&&travelDate<'2026-10-26'?'chongqing':
   travelDate>='2026-10-18'&&travelDate<'2026-10-22'?'chengdu':
   travelDate>='2026-10-13'&&travelDate<'2026-10-18'?'xian':'hanoi');
-const city=guides[requested] ? requested : Object.keys(guides)[0];
+const city=guides[requested] ? requested : 'hanoi';
 const g=guides[city];
 
 
 const nav=document.getElementById('nav');
-Object.entries(guides).forEach(([key,val])=>{
+['hanoi','xian','chengdu','chongqing'].map(key=>[key,guides[key]]).forEach(([key,val])=>{
   const a=document.createElement('a');
   a.className=key===city?'active':'';
   a.href='guide.html?city='+encodeURIComponent(key);
