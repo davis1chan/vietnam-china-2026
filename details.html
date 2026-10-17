@@ -86,6 +86,12 @@
     @media(max-width:720px){.amap-grid{grid-template-columns:1fr}}
 
     .day-selector{margin:12px 0 5px}
+    .past-toggle{display:block;width:100%;text-align:left;background:#eef3f5;color:var(--sea);border:1px solid var(--line);border-radius:12px;padding:12px 15px;font-weight:800;cursor:pointer;margin:0 0 14px}
+    .past-toggle:hover{background:#e6f0f2}
+    .today-summary{margin:8px 0 10px;padding-left:18px}
+    .today-summary li{margin:5px 0;color:#465969}
+    .today-summary-link{display:inline-block;padding:8px 12px;border-radius:9px;text-decoration:none;background:#17324d;color:white;font-size:.87rem;font-weight:800}
+    [hidden]{display:none!important}
     .day-disclosure{margin:12px 0;border:1px solid #d9e8e6;background:#fff;border-radius:13px;overflow:hidden}
     .day-disclosure summary{cursor:pointer;padding:12px 14px;font-weight:800;color:var(--sea)}
     .day-disclosure summary:hover{background:#f4faf9}
@@ -358,7 +364,7 @@
             <a class="copy-btn" href="details.html?date=2026-10-16">Fri 16 · Terracotta Army</a>
             <a class="copy-btn" href="details.html?date=2026-10-17">Sat 17 · Tang history</a>
           </div>
-          <details class="day-disclosure" open>
+          <details class="day-disclosure">
             <summary>Wed 14 October · City Wall by day, Bell &amp; Drum Towers after dark</summary>
             <div class="day-plan" data-day="2026-10-14">
               <div class="day-plan-title">Revised midday start · save the illuminated towers for tonight</div>
@@ -430,17 +436,17 @@
           </div>
           <div class="route">Both Xi'an hotels are around the Bell Tower / Muslim Quarter. Walk or use a short DiDi with luggage.</div>
           <div class="copy-row"><a class="copy-btn" href="guide.html?city=xian">🍜 Xi’an food, day plans & ticket checklist</a></div>
-          <details class="day-disclosure" open>
-            <summary>Sat 17 October · Shaanxi Museum, Pagoda & Tang district</summary>
+          <details class="day-disclosure">
+            <summary>Sat 17 October · Checkout, Giant Wild Goose Pagoda & optional museum</summary>
             <div class="day-plan" data-day="2026-10-17">
-              <div class="day-plan-title">Hotel change + imperial history</div>
-              <div class="day-stop"><b>09:00–10:00 · Move hotels</b><span>Check out of Nanfeng and leave your bag with Sky Garden in Dapiyuan if early check-in is unavailable.</span></div>
-              <div class="day-stop"><b>10:30–12:30 · Shaanxi History Museum</b><span>陕西历史博物馆, main building, 91 Xiaozhai East Road. Free but reservation-only. For 17 October, the five-day-ahead ticket release is 12 October at 17:00 China time; use the original passport.</span></div>
-              <div class="day-stop"><b>13:00 · Lunch near Xiaozhai</b><span>Pick a local noodle or dumpling shop, then continue on foot or by short taxi/metro.</span></div>
-              <div class="day-stop"><b>14:00–16:30 · Giant Wild Goose Pagoda</b><span>大雁塔 / 大慈恩寺: Buddhist history, Tang-era Xuanzang and the temple area.</span></div>
-              <div class="day-stop"><b>17:00–20:00 · Datang Everbright City</b><span>大唐不夜城 when illuminated. It is tourist-oriented but makes a pleasant evening walk; eat locally around the district or return to Dapiyuan.</span>
+              <div class="day-plan-title">Flexible final Xi’an day · checkout before 14:00, pagoda and food</div>
+              <div class="day-stop"><b>Before 14:00 · Nanfeng checkout and hostel move</b><span>Your confirmed Trip.com booking permits checkout any time BEFORE 14:00. No need to leave at 09:00. Check out by 13:45, then move to Sky Garden in Dapiyuan; ask to store your bag if the room is not ready.</span></div>
+              <div class="day-stop"><b>Optional · Shaanxi History Museum (advance ticket needed)</b><span>陕西历史博物馆, main building, 91 Xiaozhai East Road. Free but reservation-only. For 17 October, the five-day-ahead ticket release is 12 October at 17:00 China time; use the original passport.</span></div>
+              <div class="day-stop"><b>Lunch · Local noodles or dumplings</b><span>Pick a local noodle or dumpling shop, then continue on foot or by short taxi/metro.</span></div>
+              <div class="day-stop"><b>Afternoon · Giant Wild Goose Pagoda</b><span>大雁塔 / 大慈恩寺: Buddhist history, Tang-era Xuanzang and the temple area.</span></div>
+              <div class="day-stop"><b>Optional · Small Wild Goose Pagoda / Xi’an Museum</b><span>小雁塔 / 西安博物院 if you can reserve entry and have time. You already visited Datang Everbright City; no need to repeat it unless you would like another evening stroll.</span>
                 <div class="copy-row"><a class="copy-btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=Shaanxi+History+Museum+Xi%27an&amp;destination=Datang+Everbright+City+Xi%27an&amp;waypoints=Giant+Wild+Goose+Pagoda+Xi%27an" target="_blank" rel="noopener">📍 Museum → Pagoda → Tang district</a><a class="copy-btn" href="https://en.sxhm.com/en/new/visit.html" target="_blank" rel="noopener">🎟️ Museum instructions</a></div></div>
-              <div class="note">Book museum ticket ahead via the official WeChat/website route; ask Nanfeng for assistance if needed. The hostel move is short, but let reception know your arrival time.</div>
+              <div class="note">Nanfeng checkout is confirmed before 14:00, not 10:00. The Shaanxi History Museum is reservation-only; skip it if you have no confirmed entry. Check the Sky Garden hostel check-in arrangement directly.</div>
             </div>
           </details>
         </div>
@@ -613,12 +619,15 @@
 <footer><div class="wrap">Vietnam & China · 27 September – 10 November 2026 · Times and transport may change.</div></footer>
 
 <script>
+  // Dates follow the traveller, not the browser's UK/US timezone.
+  function zonedISODate(timeZone){
+    const parts=new Intl.DateTimeFormat('en-GB',{timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+    const get=t=>parts.find(p=>p.type===t).value;
+    return get('year')+'-'+get('month')+'-'+get('day');
+  }
   function localISODate(){
-    const d=new Date();
-    const y=d.getFullYear();
-    const m=String(d.getMonth()+1).padStart(2,'0');
-    const day=String(d.getDate()).padStart(2,'0');
-    return y+'-'+m+'-'+day;
+    const china=zonedISODate('Asia/Shanghai');
+    return china>='2026-09-30'&&china<'2026-10-13'?zonedISODate('Asia/Ho_Chi_Minh'):china;
   }
 
   function prettyDate(iso){
@@ -633,12 +642,33 @@
   const selectedDate = new URLSearchParams(location.search).get('date');
   if(selectedDate) document.body.classList.add('selected-mode');
   const today = selectedDate || localISODate();
-  if(today >= '2026-10-13' && today <= '2026-10-18') document.getElementById('guide-nav-link').href='guide.html?city=xian';
+  if(today >= '2026-10-13'){
+    const guideLink=document.getElementById('guide-nav-link');
+    guideLink.href='guide.html?city=xian';
+    guideLink.textContent='Food & places (Xi’an)';
+  }
   document.querySelectorAll('.day-disclosure').forEach(d=>{
     if(d.querySelector('.day-plan[data-day="'+today+'"]')) d.open=true;
   });
   const tripStart='2026-09-27', tripEnd='2026-11-10';
   const cards=[...document.querySelectorAll('.card')];
+  // Retain earlier bookings and routes, but keep them collapsed by default.
+  document.querySelectorAll('#vietnam,#china,#hongkong').forEach(section=>{
+    const past=[...section.querySelectorAll('.card')].filter(card=>card.dataset.end<today);
+    if(!past.length)return;
+    past.forEach(card=>card.hidden=true);
+    const toggle=document.createElement('button');
+    toggle.type='button';toggle.className='past-toggle';
+    toggle.textContent='Show earlier stops ('+past.length+')';
+    toggle.setAttribute('aria-expanded','false');
+    toggle.addEventListener('click',()=>{
+      const show=past[0].hidden;
+      past.forEach(card=>card.hidden=!show);
+      toggle.textContent=(show?'Hide':'Show')+' earlier stops ('+past.length+')';
+      toggle.setAttribute('aria-expanded',String(show));
+    });
+    section.querySelector('.timeline').before(toggle);
+  });
   const activeCards=cards.filter(c=>today>=c.dataset.start && today<=c.dataset.end);
   const status=document.getElementById('trip-status');
   const todayTitle=document.getElementById('today-title');
@@ -667,13 +697,16 @@
     const hotels=activeCards.map(c=>c.querySelector('.hotel')).filter(Boolean);
     if(hotels.length){
       const hotelHtml=hotels.map(h=>h.innerHTML).join('<hr style="border:0;border-top:1px solid #dce3e8;margin:12px 0">');
-      addTodayBox('Where I’m staying', hotelHtml, true);
+      addTodayBox('Accommodation & copyable address', hotelHtml, true);
     }
 
     const dayPlans=activeCards.map(c=>c.querySelector('.day-plan[data-day="'+today+'"]')).filter(Boolean);
     if(dayPlans.length){
-      const planHtml=dayPlans.map(p=>p.innerHTML).join('<hr style="border:0;border-top:1px solid #dce3e8;margin:12px 0">');
-      addTodayBox('Today’s plan', planHtml, true);
+      const highlights=dayPlans.flatMap(p=>[...p.querySelectorAll('.day-stop b')].slice(0,4).map(x=>x.textContent));
+      const first=dayPlans[0];
+      first.id='trip-day-'+today;
+      const list=highlights.map(x=>'<li>'+escapeHtml(x)+'</li>').join('');
+      addTodayBox('Today at a glance', '<ul class="today-summary">'+list+'</ul><a class="today-summary-link" href="#trip-day-'+today+'">View full day plan ↓</a>', true);
     }
 
     const routes=activeCards.map(c=>c.querySelector('.route')?.innerHTML).filter(Boolean);
