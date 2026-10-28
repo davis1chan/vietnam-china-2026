@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#17324d">
-  <title>Davis's Vietnam & China Trip — 2026</title>
+  <title>Davis's Vietnam, China & Thailand Trip — 2026</title>
   <style>
     :root{--ink:#17324d;--muted:#687786;--paper:#f7f4ee;--card:#fff;--line:#dce3e8;--sea:#2c7a7b;--accent:#d65f4b;--shadow:0 10px 28px rgba(23,50,77,.08)}
     *{box-sizing:border-box}
@@ -61,8 +61,8 @@
 <header>
   <div class="wrap">
     <div class="eyebrow">Family trip tracker · Autumn 2026</div>
-    <h1>Vietnam & China</h1>
-    <p class="lead">A simple view of where Davis is, where he’s staying and where he’s heading next.</p>
+    <h1>Vietnam, China & Thailand</h1>
+    <p class="lead">A simple view of where Davis is, where he’s staying and where he’s heading next, including Bangkok.</p>
   </div>
 </header>
 
@@ -104,9 +104,11 @@ const stops=[
   {start:'2026-10-22',end:'2026-10-25',dates:'22–26 Oct',place:'Chongqing',stay:'Friendly Nanyuan Riverview Homestay · Baixiang Street',travel:'22 Oct train to Chongqing North; 23 Oct Wulong trip (planned); 24 Oct 20:30 drone show; 25 Oct city sights'},
   {start:'2026-10-26',end:'2026-10-28',dates:'26–29 Oct',place:'Zhangjiajie / Wulingyuan',stay:'Louzhongxiaoge Inn',travel:'Cave + lake (26th); Forest Park East Gate A/B (27–28th)'},
   {start:'2026-10-29',end:'2026-10-29',dates:'29–30 Oct',place:'Zhangjiajie City',stay:'Small Backbasket INN · floor 6, no lift',travel:'Grand Canyon + Glass Bridge; transfer from Wulingyuan'},
-  {start:'2026-10-30',end:'2026-10-31',dates:'30 Oct – 1 Nov',place:'Fenghuang Ancient Town',stay:'Phoenix Tea Words Listening to Rain',travel:'30 Oct: Tianmen Mountain Route C only (A/B maintenance), then train to Fenghuang'},
-  {start:'2026-11-01',end:'2026-11-03',dates:'1–4 Nov',place:'Guangzhou',stay:'BYOU APARTMENT',travel:'High-speed rail from Fenghuang'},
-  {start:'2026-11-04',end:'2026-11-08',dates:'4–9 Nov',place:'Shenzhen',stay:'Shenzhen Love Bird Apartment',travel:'High-speed rail from Guangzhou'},
+  {start:'2026-10-30',end:'2026-10-30',dates:'30–31 Oct',place:'Fenghuang Ancient Town',stay:'Phoenix Moonlight View Inn',travel:'Tianmen Mountain Route C, then train to Fenghuang'},
+  {start:'2026-10-31',end:'2026-10-31',dates:'31 Oct – 1 Nov',place:'Shenzhen North',stay:'LianChen Hotel · 莲城住宿',travel:'Travel from Fenghuang Gucheng by rail; train time unconfirmed'},
+  {start:'2026-11-01',end:'2026-11-01',dates:'1 Nov',place:'Shenzhen → Hong Kong → Bangkok',stay:'@Nares Hotel · 1–5 Nov',travel:'HK Express UO734 · HKG 21:40 → BKK 23:40'},
+  {start:'2026-11-02',end:'2026-11-04',dates:'2–5 Nov',place:'Bangkok',stay:'@Nares Hotel · Bang Rak',travel:'Bangkok sightseeing · 2–4 Nov'},
+  {start:'2026-11-05',end:'2026-11-08',dates:'5–9 Nov',place:'Shenzhen',stay:'Shenzhen Love Bird Apartment · Huangbeiling',travel:'5 Nov: HK Express UO713 · BKK 12:00 → HKG 15:55; then Shenzhen'},
   {start:'2026-11-09',end:'2026-11-09',dates:'9–10 Nov',place:'Hong Kong',stay:'Yutik Guesthouse',travel:'High-speed rail from Shenzhen'},
   {start:'2026-11-10',end:'2026-11-10',dates:'10 Nov',place:'Hong Kong → London',stay:'Homeward bound',travel:'Air China via Beijing'}
 ];
@@ -119,7 +121,9 @@ function zonedISODate(timeZone){
 }
 function localISODate(){
   const china=zonedISODate('Asia/Shanghai');
-  return china>='2026-09-30'&&china<'2026-10-13'?zonedISODate('Asia/Ho_Chi_Minh'):china;
+  if(china>='2026-09-30'&&china<'2026-10-13')return zonedISODate('Asia/Ho_Chi_Minh');
+  if(china>='2026-11-01'&&china<'2026-11-06')return zonedISODate('Asia/Bangkok');
+  return china;
 }
 function pretty(iso){
   return new Intl.DateTimeFormat('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})
